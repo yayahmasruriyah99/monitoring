@@ -12,13 +12,13 @@
                 <table class="table table-bordered" id="example" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>No</th>
-                            <th>Line</th>
+                            <th>ID</th>
                             <th>Nama Produk</th>
+                            <th>Sampel</th>
+                            <th>Line</th>
                             <th>Tanggal</th>
                             <th>Waktu</th>
                             <th>Shift</th>
-                            <th>Sampel</th>
                             <th>Seasoning Nacl</th>
                             <th>Base Nacl</th>
                             <th>Nacl (FG-Base)</th>
@@ -35,8 +35,9 @@
                         $tanggal_start = $_GET['tanggal_start'];
                         $tanggal_end = $_GET['tanggal_end'];
                         $shift  = $_GET['shift'];
+                        $line   = $_GET['line'];
                         
-                        $query = "SELECT tbl_sa_pc_detail.*, tbl_sa_pc.shift, tbl_sa_pc.nama_produk, tbl_sa_pc.analis, tbl_sa_pc.field FROM tbl_sa_pc_detail, tbl_sa_pc WHERE tbl_sa_pc_detail.tanggal >='$tanggal_start' AND tbl_sa_pc_detail.tanggal <='$tanggal_end' AND tbl_sa_pc.id=tbl_sa_pc_detail.id_sa";
+                        $query = "SELECT tbl_sa_pc_detail.*, tbl_sa_pc.shift, tbl_sa_pc.nama_produk, tbl_sa_pc.analis, tbl_sa_pc.field FROM tbl_sa_pc_detail, tbl_sa_pc WHERE tbl_sa_pc_detail.line='$line' AND tbl_sa_pc_detail.tanggal >='$tanggal_start' AND tbl_sa_pc_detail.tanggal <='$tanggal_end' AND tbl_sa_pc.id=tbl_sa_pc_detail.id_sa ORDER BY tbl_sa_pc_detail.sampel ASC";
                         if ($shift !== 'all' && !empty($shift)) {
                             $query .= " AND tbl_sa_pc.shift='$shift'";
                         }
@@ -47,14 +48,13 @@
                         $no++
                         ?>
                         <tr>
-
-                            <td><?= $no ?></td>
-                            <td><?= $data['line']?></td>
+                            <td><?= $data['id_sa']?></td>
                             <td><?= $data['nama_produk']?></td>
+                            <td><?= $data['sampel']?></td>
+                            <td><?= $data['line']?></td>
                             <td><?= $data['tanggal'] ?></td>
                             <td><?= $data['waktu'] ?></td>
                             <td><?= $data['shift'] ?></td>
-                            <td><?= $data['sampel']?></td>
                             <td><?= $data['seasoning_nacl'] ?></td>
                             <td><?= $data['base_nacl'] ?></td>
                             <td><?= $data['nacl'] ?></td>

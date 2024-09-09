@@ -8,5 +8,5 @@
 
 ?>
 <script>
-    window.location.href="?page=report_<?=$line?>&tanggal_start=<?=$tanggal_start?>&tanggal_end=<?=$tanggal_end?>&shift=<?=$shift?>";
+    window.location.href="?page=report_<?=$line?>&tanggal_start=<?=$tanggal_start?>&tanggal_end=<?=$tanggal_end?>&shift=<?=$shift?>&line=<?=$line?>";
 </script>

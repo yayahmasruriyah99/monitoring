@@ -1,5 +1,6 @@
 <?php
 include "koneksi.php";
+date_default_timezone_set("Asia/Jakarta");
 session_start();
 if ($_SESSION['login'] != "login") {
     header("Location: login.php");

@@ -17,37 +17,55 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <form method="post">
-            <div class="row">
-                
-                <div class="col-md-3 mb-3">
-                    <input type="date" class="form-control" placeholder="Tanggal" name="tanggal" value="<?php echo $tanggal; ?>" required>
-                </div>
-                <div class="col-md-3 mb-3">
-                    <div class="form-group">
-                            <select class="form-control" id="shift" name="shift" required>
-                                <option value="">Selected Shift</option>
-                                <option value=1>1</option>
-                                <option value=2>2</option>
-                                <option value=3>3</option>
+                <form method="GET">
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <input type="date" class="form-control" id="tanggal" placeholder="Tanggal" name="tanggal" value="<?php echo $tanggal; ?>" required>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <div class="form-group">
+                                <select class="form-control" id="shift" name="shift" required>
+                                    <option value="">Select Shift</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="all">All</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <select name="line" id="line" class="form-control" required>
+                                <option value="">Select Line</option>
+                                <option value="PC32">PC32</option>
+                                <option value="PC14">PC14</option>
+                                <option value="Cassava">Cassava</option>
                                 <option value="all">All</option>
                             </select>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <button type="button" id="btnCari" class="btn btn-warning" name="cari">Cari</button>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-3 mb-3">
-                    <select name="line" id="line" class="form-control" required>
-                        <option value="">Select Line</option>
-                        <option value="PC32">PC32</option>
-                        <option value="PC14">PC14</option>
-                        <option value="Cassava">Cassava</option>
-                        <option value="all">All</option>
-                    </select>
-                </div>
-                <div class="col-md-3 mb-3">
-                    <button type="submit" class="btn btn-warning" name="cari">Cari</button>
-                </div>
                 </form>
-            </div>
+
+                <script>
+                    document.getElementById("btnCari").addEventListener("click", redirectToPage);
+
+                    function redirectToPage() {
+                    
+
+                        var tanggal = document.getElementById("tanggal").value;
+                        var shift = document.getElementById("shift").value;
+                        var line = document.getElementById("line").value;
+                        var cari = '';
+
+                        var url = `index.php?page=index_sa_cr&tanggal=${tanggal}&shift=${shift}&line=${line}&cari=${cari}`;
+                        console.log("Redirecting to: " + url);
+
+                        window.location.href = url;
+                    }
+                </script>
+
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead style="background-color:#ff7f00; color:white">
                         <tr>
@@ -68,23 +86,23 @@
                         <?php
                         
                        
-                        @$tanggal   = $_POST['tanggal'];
-                        @$shift     = $_POST['shift'];
-                        @$line      = $_POST['line'];
-                        @$cari = $_POST['cari'];
+                        @$tanggal   = $_GET['tanggal'];
+                        @$shift     = $_GET['shift'];
+                        @$line      = $_GET['line'];
+                        @$cari = $_GET['cari'];
                         @$tanggal_sekarang = date("Y-m-d");
-                        @$shift_sekarang = $_SESSION['shift'];
-
                         
+
+                        @$shift_sekarang = $_SESSION['shift'];
 
                         if(isset($cari)){
                             
-                            $query = "SELECT * FROM tbl_sa_pc WHERE tanggal='$tanggal'";
+                            $query = "SELECT tbl_sa_pc.*, tbl_loop.bagian  FROM tbl_sa_pc, tbl_loop WHERE tbl_sa_pc.tanggal='$tanggal' AND tbl_sa_pc.loop=tbl_loop.loop";
                             if ($shift !== 'all' && !empty($shift)) {
-                                $query .= " AND shift='$shift'";
+                                $query .= " AND tbl_sa_pc.shift='$shift'";
                             }
                              if ($line !== 'all' && !empty($line)) {
-                                $query .= " AND line='$line'";
+                                $query .= " AND tbl_sa_pc.line='$line'";
                             }
                             $result = pg_query($dbconn, $query);
 

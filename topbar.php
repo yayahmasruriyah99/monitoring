@@ -145,7 +145,7 @@
         include "page/summary_report/report_fcp.php";
     }else if($_GET['page'] == 'report_tws'){
         include "page/summary_report/report_tws.php";
-    }else if($_GET['page'] == 'report_pc32'){
+    }else if($_GET['page'] == 'report_PC32' || $_GET['page'] == 'report_PC14' ||$_GET['page'] == 'report_Cassava' ){
         include "page/summary_report/report_pc.php";
     }
     ?>
