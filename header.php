@@ -16,9 +16,9 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="asset/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="http://10.126.48.18/monitoring_sa/asset/css/sb-admin-2.min.css" rel="stylesheet">
 
-    <link href="asset/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="http://10.126.48.18/monitoring_sa/asset/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <!-- <link href="asset/css_boostrap/bootstrap.min.css" rel="stylesheet"> -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/2.1.5/css/dataTables.dataTables.css" rel="stylesheet">
