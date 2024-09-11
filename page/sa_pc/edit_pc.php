@@ -175,7 +175,7 @@ $data = pg_fetch_assoc($querySelect);
       });
     });
   </script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="asset/https/add_pc/jquery.min.js"></script>
 <script type="text/javascript">
 	$('#brand').change(function() { 
 		var brand = $(this).val(); 
@@ -202,7 +202,7 @@ $data = pg_fetch_assoc($querySelect);
 	});
  
 </script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="asset/https/add_pc/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
         $("#rasa").on('input', function() {

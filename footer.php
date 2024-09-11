@@ -29,15 +29,15 @@
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-<script src="https://cdn.datatables.net/2.1.5/js/dataTables.js"></script>
-<script src="https://cdn.datatables.net/buttons/3.1.2/js/dataTables.buttons.js"></script>
-<script src="https://cdn.datatables.net/buttons/3.1.2/js/buttons.dataTables.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/3.1.2/js/buttons.html5.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/3.1.2/js/buttons.print.min.js"></script>
+<script src="asset/https/jquery-3.7.1"></script>
+<script src="asset/https/data_tabels/dataTables.js"></script>
+<script src="asset/https/data_tabels/dataTables.buttons.js"></script>
+<script src="asset/https//data_tabels/buttons.dataTables.js"></script>
+<script src="asset/https//data_tabels/jszip.min"></script>
+<script src="asset/https//data_tabels//pdfmake.min"></script>
+<script src="asset/https/data_tabels/vfs_fonts"></script>
+<script src="asset/https//data_tabels/buttons.html5.min.js"></script>
+<script src="asset/https//data_tabels//buttons.print.min.js"></script>
 <script>
     new DataTable('#example', {
     layout: {
@@ -62,11 +62,11 @@
 <script src="asset/vendor/chart.js/Chart.min.js"></script>
 
 <!-- Page level custom scripts -->
-<script src="js/demo/chart-area-demo.js"></script>
-<script src="js/demo/chart-pie-demo.js"></script>
+<script src="asset/js/demo/chart-area-demo.js"></script>
+<script src="asset/js/demo/chart-pie-demo.js"></script>
 <script src="asset/vendor/datatables/jquery.dataTables.min.js"></script>
 <script src="asset/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
 <script src="asset/js/demo/datatables-demo.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="asset/https/data_tabels/bootstrap.bundle.min" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

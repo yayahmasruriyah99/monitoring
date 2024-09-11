@@ -223,7 +223,7 @@
 	});
  
 </script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="asset/https/add_pc/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
         $("#rasa").on('input', function() {

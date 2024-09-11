@@ -21,7 +21,7 @@
             <li class="nav-item dropdown no-arrow">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?=$_SESSION['nama']?></span>
-                    <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                    <img class="img-profile rounded-circle" src="asset/img/undraw_profile.svg">
                 </a>
                 <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -80,6 +80,25 @@
         include "page/master_produk/delete_produk.php";
     }else if($_GET['page'] == 'edit_produk'){
         include "page/master_produk/edit_produk.php";
+    }
+    //Master Loop
+    else if ($_GET['page'] == 'master_loop'){
+        include "page/master_loop/master_loop.php";
+    }else if($_GET['page'] == 'add_loop'){
+        include "page/master_loop/add_loop.php";
+    }else if($_GET['page'] == 'delete_loop'){
+        include "page/master_loop/delete_loop.php";
+    }else if($_GET['page'] == 'edit_loop'){
+        include "page/master_loop/edit_loop.php";
+    }
+    else if($_GET['page'] == 'master_brand'){
+        include "page/master_brand/master_brand.php";
+    }else if($_GET['page'] == 'add_brand'){
+        include "page/master_brand/add_brand.php";
+    }else if($_GET['page'] == 'delete_brand'){
+        include "page/master_brand/delete_brand.php";
+    }else if($_GET['page'] == 'edit_brand'){
+        include "page/master_brand/edit_brand.php";
     }
     //SA PC
     else if($_GET['page'] == 'index_sa_cr'){
@@ -147,6 +166,8 @@
         include "page/summary_report/report_tws.php";
     }else if($_GET['page'] == 'report_PC32' || $_GET['page'] == 'report_PC14' ||$_GET['page'] == 'report_Cassava' ){
         include "page/summary_report/report_pc.php";
+    }else if($_GET['page'] == 'report_TS'){
+        include "page/summary_report/report_ts.php";
     }
     ?>
 

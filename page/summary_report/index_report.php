@@ -37,7 +37,7 @@
                         <option value="Cassava">Cassava</option>
                         <option value="FCP">FCP</option>
                         <option value="TWS">TWS</option>
-                        <option value="all">All</option>
+                        <option value="TS">TS</option>
                     </select>
                 </div>
                 <div class="col-md-1 mb-3">

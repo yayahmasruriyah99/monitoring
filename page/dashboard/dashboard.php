@@ -137,7 +137,7 @@
     <div class="row">
 
         <!-- Area Chart -->
-        <div class="col-xl-6 col-lg-6">
+        <div class="col-xl-12 col-lg-12">
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -145,7 +145,8 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                    <table class="table table-bordered"  border="1" width="100%" cellspacing="0">
+                    <div class="table-responsive">
+                    <table class="table table-bordered" id="example" border="1" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>Sampel</th>
@@ -201,12 +202,13 @@
                         <?php } ?>
                     </tbody>
                     </table>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Pie Chart -->
-        <div class="col-xl-6 col-lg-6">
+        <div class="col-xl-12 col-lg-12">
             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div
@@ -229,11 +231,11 @@
 
 </div>
 
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/series-label.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
-<script src="https://code.highcharts.com/modules/export-data.js"></script>
-<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<script src="asset/https/dashboard/highcharts.js"></script>
+<script src="asset/https/dashboard/series-label.js"></script>
+<script src="asset/https/dashboard/exporting.js"></script>
+<script src="asset/https/dashboard/export-data.js"></script>
+<script src="asset/https/dashboard/accessibility.js"></script>
 <script>
     // Data yang diperoleh dari PHP dan dikonversi menjadi format JavaScript
     var data_sa = <?php echo json_encode($data_sa); ?>;
