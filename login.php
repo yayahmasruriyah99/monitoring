@@ -12,6 +12,7 @@
     <title>Monitoring SA</title>
 
     <!-- Custom fonts for this template-->
+    <link rel="icon" href="asset/logo/logo.png" type="image/x-icon">
     <link href="asset/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="asset/https/login.css" rel="stylesheet">
 
