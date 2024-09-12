@@ -160,9 +160,9 @@
     }
     else if ($_GET['page'] == 'detail_report'){
         include "page/summary_report/detail_report.php";
-    }else if ($_GET['page']  == 'report_fcp'){
+    }else if ($_GET['page']  == 'report_FCP'){
         include "page/summary_report/report_fcp.php";
-    }else if($_GET['page'] == 'report_tws'){
+    }else if($_GET['page'] == 'report_TWS.5.6' || $_GET['page'] == 'report_TWS.7.2'){
         include "page/summary_report/report_tws.php";
     }else if($_GET['page'] == 'report_PC32' || $_GET['page'] == 'report_PC14' ||$_GET['page'] == 'report_Cassava' ){
         include "page/summary_report/report_pc.php";

@@ -9,8 +9,9 @@ $newSampel = $latestSampel + 1;
 session_start();
 $tanggal_sekarang = date('Y-m-d');
 $shift = $_SESSION['shift'];
+
 //ambil seasoning nacl 
-$queryLastNacl = pg_query($dbconn,"SELECT tbl_sa_pc.*, tbl_cr_tws_detail.* FROM tbl_sa_pc, tbl_cr_tws_detail WHERE tbl_sa_pc.id=tbl_cr_tws_detail.id_sa AND tbl_sa_pc.tanggal='$tanggal_sekarang' AND tbl_sa_pc.shift='$shift' ORDER BY tbl_cr_tws_detail.sampel DESC");
+$queryLastNacl = pg_query($dbconn,"SELECT tbl_sa_pc.*, tbl_cr_tws_detail.* FROM tbl_sa_pc, tbl_cr_tws_detail WHERE  tbl_sa_pc.id=tbl_cr_tws_detail.id_sa AND  tbl_sa_pc.tanggal='$tanggal_sekarang' AND tbl_sa_pc.shift='$shift' ORDER BY  tbl_cr_tws_detail.sampel DESC, tbl_cr_tws_detail.loop ASC");
 
 $dataLastNacl = pg_fetch_assoc($queryLastNacl);
 $lastNacl = $dataLastNacl['seasoning_nacl']; 
@@ -125,16 +126,7 @@ $detailPc= pg_fetch_assoc($queryPc);
         var nacl = fg_nacl - base_nacl;
         var cr = (nacl * 100) / (((ts/100) * seasoning_nacl) - nacl);
          // Validasi apakah sa adalah NaN atau Infinity
-        if (isNaN(nacl) || !isFinite(nacl)) {
-            alert("Error: The value of sa is not valid (NaN or Infinity). Please check your input.");
-            document.getElementById('nacl').value = "Error";
-            return;
-        }
-        if (isNaN(cr) || !isFinite(cr)) {
-            alert("Error: The value of cr is not valid (NaN or Infinity). Please check your input.");
-            document.getElementById('cr').value = "Error";
-            return;
-        }
+        
         //document.getElementById('sa').value = sa;
         document.getElementById('nacl').value = nacl.toFixed(3);
         document.getElementById('cr').value = cr.toFixed(3);

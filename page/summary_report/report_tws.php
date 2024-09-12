@@ -12,11 +12,12 @@
                 <table class="table table-bordered" id="example" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>No</th>
+                            <th>Id</th>
+                            <th>Shift</th>
+                            <th>Loop</th>
                             <th>Nama Produk</th>
                             <th>Tanggal</th>
                             <th>Waktu</th>
-                            <th>Shift</th>
                             <th>Seasoning In Total Slurry</th>
                             <th>Seasoning Nacl</th>
                             <th>Nacl Base</th>
@@ -35,8 +36,9 @@
                         $tanggal_start = $_GET['tanggal_start'];
                         $tanggal_end = $_GET['tanggal_end'];
                         $shift  = $_GET['shift'];
+                        $line   = $_GET['line'];
                         
-                        $query = "SELECT tbl_cr_tws_detail.*, tbl_sa_pc.shift, tbl_sa_pc.nama_produk, tbl_sa_pc.analis, tbl_sa_pc.field FROM tbl_cr_tws_detail, tbl_sa_pc WHERE tbl_cr_tws_detail.tanggal >='$tanggal_start' AND tbl_cr_tws_detail.tanggal <='$tanggal_end' AND tbl_sa_pc.id=tbl_cr_tws_detail.id_sa";
+                        $query = "SELECT tbl_cr_tws_detail.*, tbl_sa_pc.shift, tbl_sa_pc.nama_produk, tbl_sa_pc.analis, tbl_sa_pc.field FROM tbl_cr_tws_detail, tbl_sa_pc WHERE tbl_cr_tws_detail.line='$line' AND tbl_cr_tws_detail.tanggal >='$tanggal_start' AND tbl_cr_tws_detail.tanggal <='$tanggal_end' AND tbl_sa_pc.id=tbl_cr_tws_detail.id_sa ORDER BY tbl_cr_tws_detail.sampel ASC "  ;
                         if ($shift !== 'all' && !empty($shift)) {
                             $query .= " AND tbl_sa_pc.shift='$shift'";
                         }
@@ -48,11 +50,12 @@
                         ?>
                         <tr>
 
-                            <td><?= $no ?></td>
+                            <td><?= $data['id'] ?></td>
+                            <td><?= $data['shift'] ?></td>
+                            <td><?= $data['loop'] ?></td>
                             <td><?= $data['nama_produk']?></td>
                             <td><?= $data['tanggal'] ?></td>
                             <td><?= $data['waktu'] ?></td>
-                            <td><?= $data['shift'] ?></td>
                             <td><?= $data['ts']?></td>
                             <td><?= $data['seasoning_nacl'] ?></td>
                             <td><?= $data['base_nacl'] ?></td>

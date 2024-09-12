@@ -36,7 +36,8 @@ $data = pg_fetch_assoc($querySelect);
                                 <option <?php if ($data['line'] == 'PC14'){echo "selected";}?> value="PC14">PC14</option>
                                 <option <?php if ($data['line'] == 'Cassava'){echo "selected";}?> value="Cassava">Cassava</option>
                                 <option <?php if ($data['line'] == 'TS'){echo "selected";}?> value="TS">TS</option>
-                                <option <?php if ($data['line'] == 'TWS'){echo "selected";}?> value="TWS">TWS</option>
+                                <option <?php if ($data['line'] == 'TWS.5.6'){echo "selected";}?> value="TWS">TWS 5.6</option>
+                                <option <?php if ($data['line'] == 'TWS.7.2'){echo "selected";}?> value="TWS">TWS 7.2</option>
                                 <option <?php if ($data['line'] == 'FCP'){echo "selected";}?> value="FCP">FCP</option>
                             </select>
                         </div>

@@ -149,9 +149,9 @@
                     <table class="table table-bordered" id="example" border="1" width="100%" cellspacing="0">
                         <thead>
                             <tr>
+                                <th>Loop</th>
                                 <th>Sampel</th>
                                 <th>Jam</th>
-                                <th>Loop</th>
                                 <th>Nama Produk</th>
                                 <th>Seasoning Appled</th>
                                 <th>Nacl</th>
@@ -166,7 +166,7 @@
                         $shift = $_SESSION['shift'];
                         if(empty($loop)){
                             // $query = pg_query($dbconn, "SELECT tbl_sa_pc_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max FROM tbl_sa_pc_detail, tbl_sa_pc, tbl_produk WHERE tbl_produk.kode=tbl_sa_pc.kode AND tbl_sa_pc.id=tbl_sa_pc_detail.id_sa AND tbl_sa_pc_detail.tanggal='$tanggal_sekarang' AND tbl_sa_pc.shift='$shift'");
-                            $query = pg_query($dbconn, "SELECT tbl_sa_pc_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max  FROM tbl_sa_pc_detail, tbl_sa_pc, tbl_produk WHERE tbl_produk.kode=tbl_sa_pc.kode AND tbl_sa_pc_detail.loop=1 AND tbl_sa_pc.id=tbl_sa_pc_detail.id_sa AND tbl_sa_pc_detail.tanggal='$tanggal_sekarang' AND tbl_sa_pc.shift='$shift' ORDER BY tbl_sa_pc_detail.sampel ASC");
+                            $query = pg_query($dbconn, "SELECT tbl_sa_pc_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max  FROM tbl_sa_pc_detail, tbl_sa_pc, tbl_produk WHERE tbl_produk.kode=tbl_sa_pc.kode AND tbl_sa_pc.id=tbl_sa_pc_detail.id_sa AND tbl_sa_pc_detail.tanggal='$tanggal_sekarang' AND tbl_sa_pc.shift='$shift' ORDER BY tbl_sa_pc_detail.sampel ASC");
                         }else{
                             if($loop < 14){
                                 $query = pg_query($dbconn, "SELECT tbl_sa_pc_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max  FROM tbl_sa_pc_detail, tbl_sa_pc, tbl_produk WHERE tbl_produk.kode=tbl_sa_pc.kode AND tbl_sa_pc_detail.loop='$loop' AND tbl_sa_pc.id=tbl_sa_pc_detail.id_sa AND tbl_sa_pc_detail.tanggal='$tanggal_sekarang' AND tbl_sa_pc.shift='$shift' ORDER BY tbl_sa_pc_detail.sampel ASC");
@@ -185,9 +185,9 @@
                             $data_green_max[]  = (float) $data['green_max'];
                         ?>
                             <tr>
+                                <td><?=$data['loop']?></td>
                                 <td><?= $data['sampel']?></td>
                                 <td><?= $data['waktu']?></td>
-                                <td><?=$data['loop']?></td>
                                 <td><?=$data['nama_produk']?></td>
                                 <td><?= $data['sa'] ?></td>
                                 <td><?= $data['nacl'] ?></td>

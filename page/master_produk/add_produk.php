@@ -51,19 +51,19 @@
                         </div>
                         <div class="mb-3">
                             <label for="green_min">Standar Green Min :</label>
-                            <input type="number" step='any' class="form-control" id="green_min" name="green_min" oninput="standars()" required>
+                            <input type="number" step='any' class="form-control" id="green_min" name="green_min"  required>
                         </div>
                         <div class="mb-3">
                             <label for="green_max">Standar Green Max :</label>
-                            <input type="number" step='any' class="form-control" id="green_max" name="green_max" oninput="standars()" required>
+                            <input type="number" step='any' class="form-control" id="green_max" name="green_max"  required>
                         </div>
                         <div class="mb-3">
                             <label for="yellow_min">Standar Yellow Min :</label>
-                            <input type="number" step='any' class="form-control" id="yellow_min" name="yellow_min" required>
+                            <input type="number" step='any' class="form-control" id="yellow_min" name="yellow_min" oninput="standars()" required>
                         </div>
                         <div class="mb-3">
                             <label for="yellow_max">Standar Yellow Max :</label>
-                            <input type="number" step='any' class="form-control" id="yellow_max" name="yellow_max" required>
+                            <input type="number" step='any' class="form-control" id="yellow_max" name="yellow_max" oninput="standars()" required>
                         </div>
                         <div class="mb-3">
                             <label for="standar">Standar PQS :</label>
@@ -121,10 +121,10 @@
         }
 
     function standars(){
-        var green_min = document.getElementById('green_min').value;
-        var green_max = document.getElementById('green_max').value;
+        var yellow_min = document.getElementById('yellow_min').value;
+        var yellow_max = document.getElementById('yellow_max').value;
 
-        var standar = "("+green_min+"-"+green_max+")";
+        var standar = "("+yellow_min+"-"+yellow_max+")";
         document.getElementById('standar').value = standar;
     }
 

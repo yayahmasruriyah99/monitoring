@@ -181,7 +181,7 @@
                                         ?page=index_detail_pc&id_sa=<?= $data['id']?>&id_produk=<?= $data['kode']?> 
                                     <?php }else if($data['line'] == 'TS'){?>
                                         ?page=index_detail_ts&id_sa=<?= $data['id']?>&id_produk=<?= $data['kode']?>
-                                    <?php }else if($data['line'] == 'TWS'){?>
+                                    <?php }else if($data['line'] == 'TWS.5.6' || $data['line'] == 'TWS.7.2' ){?>
                                         ?page=index_detail_tws&id_sa=<?= $data['id']?>&id_produk=<?= $data['kode']?>
                                     <?php }else if($data['line'] == 'FCP'){?>
                                         ?page=index_detail_fcp&id_sa=<?= $data['id']?>&id_produk=<?= $data['kode']?>

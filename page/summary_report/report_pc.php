@@ -13,12 +13,13 @@
                     <thead>
                         <tr>
                             <th>ID</th>
+                            <th>Shift</th>
+                            <th>Loop</th>
                             <th>Nama Produk</th>
                             <th>Sampel</th>
                             <th>Line</th>
                             <th>Tanggal</th>
                             <th>Waktu</th>
-                            <th>Shift</th>
                             <th>Seasoning Nacl</th>
                             <th>Base Nacl</th>
                             <th>Nacl (FG-Base)</th>
@@ -49,12 +50,13 @@
                         ?>
                         <tr>
                             <td><?= $data['id_sa']?></td>
+                            <td><?= $data['shift'] ?></td>
+                            <td><?= $data['loop']?></td>
                             <td><?= $data['nama_produk']?></td>
                             <td><?= $data['sampel']?></td>
                             <td><?= $data['line']?></td>
                             <td><?= $data['tanggal'] ?></td>
                             <td><?= $data['waktu'] ?></td>
-                            <td><?= $data['shift'] ?></td>
                             <td><?= $data['seasoning_nacl'] ?></td>
                             <td><?= $data['base_nacl'] ?></td>
                             <td><?= $data['nacl'] ?></td>

@@ -36,7 +36,8 @@
                         <option value="PC14">PC14</option>
                         <option value="Cassava">Cassava</option>
                         <option value="FCP">FCP</option>
-                        <option value="TWS">TWS</option>
+                        <option value="TWS.5.6">TWS 5.6</option>
+                        <option value="TWS.7.2">TWS 7.2</option>
                         <option value="TS">TS</option>
                     </select>
                 </div>

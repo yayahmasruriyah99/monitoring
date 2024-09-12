@@ -149,8 +149,9 @@
                     <table class="table table-bordered" id="example"  border="1" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>Jam</th>
                                 <th>Loop</th>
+                                <th>Sampel Ke</th>
+                                <th>Jam</th>
                                 <th>Nama Produk</th>
                                 <th>NaCl</th>
                                 <th>Coating Ratio</th>
@@ -187,8 +188,9 @@
                             $data_green_max[]  = (float) $data['green_max'];
                         ?>
                             <tr>
-                                <td><?= $data['waktu']?></td>
                                 <td><?=$data['loop']?></td>
+                                <td><?=$data['sampel']?></td>
+                                <td><?= $data['waktu']?></td>
                                 <td><?=$data['nama_produk']?></td>
                                 <td><?= $data['nacl'] ?></td>
                                 <td><?= $data['cr'] ?></td>

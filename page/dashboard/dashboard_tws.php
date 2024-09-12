@@ -108,7 +108,7 @@
         <div class="col-md-4">
                     <select name="loop" id="loop" class="form-control">
                        <?php
-                       $querySelect = pg_query($dbconn, "SELECT * FROM tbl_loop WHERE loop BETWEEN 16 AND 17");
+                       $querySelect = pg_query($dbconn, "SELECT * FROM tbl_loop WHERE loop BETWEEN 16 AND 20");
                         while($data = pg_fetch_assoc($querySelect)){
                             ?>
                             <option value="<?=$data['loop']."-".$data['line']."-".$data['bagian']?>"><?=$data['loop']."-".$data['line']."-".$data['bagian']?></option>
@@ -149,8 +149,9 @@
                     <table class="table table-bordered" id="example"  border="1" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>Jam</th>
                                 <th>Loop</th>
+                                <th>Sampel Ke</th>
+                                <th>Jam</th>
                                 <th>Nama Produk</th>
                                 <th>NaCl</th>
                                 <th>Coating Ratio</th>
@@ -164,9 +165,9 @@
                         $tanggal_sekarang = date("Y-m-d");
                         $shift = $_SESSION['shift'];
                         if(empty($loop)){
-                             $query = pg_query($dbconn, "SELECT tbl_cr_tws_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max FROM tbl_cr_tws_detail, tbl_sa_pc, tbl_produk WHERE tbl_produk.kode=tbl_sa_pc.kode AND tbl_sa_pc.id=tbl_cr_tws_detail.id_sa AND tbl_cr_tws_detail.tanggal='$tanggal_sekarang' AND tbl_sa_pc.shift='$shift'");
+                             $query = pg_query($dbconn, "SELECT tbl_cr_tws_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max FROM tbl_cr_tws_detail, tbl_sa_pc, tbl_produk WHERE tbl_produk.kode=tbl_sa_pc.kode  AND tbl_sa_pc.id=tbl_cr_tws_detail.id_sa AND tbl_cr_tws_detail.tanggal='$tanggal_sekarang' AND tbl_sa_pc.shift='$shift'");
                         }else{
-                            if($loop >= 16 && $loop <= 17){
+                            if($loop >= 16 && $loop <= 19){
                                 $query = pg_query($dbconn, "SELECT tbl_cr_tws_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max  
                                     FROM tbl_cr_tws_detail, tbl_sa_pc, tbl_produk 
                                     WHERE tbl_produk.kode = tbl_sa_pc.kode 
@@ -187,8 +188,9 @@
                             $data_green_max[]  = (float) $data['green_max'];
                         ?>
                             <tr>
-                                <td><?= $data['waktu']?></td>
                                 <td><?=$data['loop']?></td>
+                                <td><?= $data['sampel']?></td>
+                                <td><?= $data['waktu']?></td>
                                 <td><?=$data['nama_produk']?></td>
                                 <td><?= $data['nacl'] ?></td>
                                 <td><?= $data['cr'] ?></td>

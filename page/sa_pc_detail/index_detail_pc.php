@@ -63,7 +63,7 @@
 
                                 <td>
                                     <a href="?page=edit_detail_pc&id=<?= $data['id'] ?>&id_produk=<?=$id_produk?>" class="btn btn-warning"><i class="fa fa-edit"></i></a>
-                                    <a href="?page=delete_detail_pc&id=<?= $data['id'] ?>&id_sa=<?=$id_sa?>" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                    <a href="?page=delete_detail_pc&id=<?= $data['id'] ?>&id_sa=<?=$id_sa?>&id_produk=<?=$id_produk?>" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
                         <?php } ?>
