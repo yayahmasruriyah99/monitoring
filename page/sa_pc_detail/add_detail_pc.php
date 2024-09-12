@@ -87,8 +87,8 @@ $detailPc= pg_fetch_assoc($queryPc);
                         
                         <div class="mb-3">
                             <label for="status">Status :</label>
-                            <select class="form-control" name="status" id="status">
-                                <option>Open This Select Menu</option>
+                            <select class="form-control" name="status" id="status" required>
+                                <option value="">Open This Select Menu</option>
                                 <option value="Release">Release</option>
                                 <option value="Reject">Reject</option>
                             </select>  

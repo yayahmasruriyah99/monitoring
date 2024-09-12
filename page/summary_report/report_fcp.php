@@ -13,10 +13,10 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama Produk</th>
                             <th>Tanggal</th>
-                            <th>Waktu</th>
                             <th>Shift</th>
+                            <th>Nama Produk</th>
+                            <th>Waktu</th>
                             <th>Seasoning In Total Slurry</th>
                             <th>Seasoning Nacl</th>
                             <th>FG Nacl</th>
@@ -34,7 +34,7 @@
                         $tanggal_end = $_GET['tanggal_end'];
                         $shift  = $_GET['shift'];
                         
-                        $query = "SELECT tbl_cr_fcp_detail.*, tbl_sa_pc.shift, tbl_sa_pc.nama_produk, tbl_sa_pc.analis, tbl_sa_pc.field FROM tbl_cr_fcp_detail, tbl_sa_pc WHERE tbl_cr_fcp_detail.tanggal >='$tanggal_start' AND tbl_cr_fcp_detail.tanggal <='$tanggal_end' AND tbl_sa_pc.id=tbl_cr_fcp_detail.id_sa";
+                        $query = "SELECT tbl_cr_fcp_detail.*, tbl_sa_pc.shift, tbl_sa_pc.nama_produk, tbl_sa_pc.analis, tbl_sa_pc.field FROM tbl_cr_fcp_detail, tbl_sa_pc WHERE tbl_cr_fcp_detail.tanggal >='$tanggal_start' AND tbl_cr_fcp_detail.tanggal <='$tanggal_end' AND tbl_sa_pc.id=tbl_cr_fcp_detail.id_sa ORDER BY tbl_sa_pc.shift ASC";
                         if ($shift !== 'all' && !empty($shift)) {
                             $query .= " AND tbl_sa_pc.shift='$shift'";
                         }
@@ -47,10 +47,10 @@
                         <tr>
 
                             <td><?= $no ?></td>
-                            <td><?= $data['nama_produk']?></td>
                             <td><?= $data['tanggal'] ?></td>
-                            <td><?= $data['waktu'] ?></td>
                             <td><?= $data['shift'] ?></td>
+                            <td><?= $data['nama_produk']?></td>
+                            <td><?= $data['waktu'] ?></td>
                             <td><?= $data['ts']?></td>
                             <td><?= $data['seasoning_nacl'] ?></td>
                             <td><?= $data['nacl'] ?></td>
