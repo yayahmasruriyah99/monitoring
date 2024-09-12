@@ -13,6 +13,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead style="background-color:#ff7f00; color:white">
                         <tr>
+                            <th>ID</th>
                             <th>Brand</th>
                             <th>Rasa</th>
                             <th>Seasoning</th>
@@ -25,6 +26,7 @@
                         while ($data = pg_fetch_assoc($query)) {
                         ?>
                             <tr>
+                                <td><?=$data['id']?></td>
                                 <td><?= $data['brand'] ?></td>
                                 <td><?= $data['rasa'] ?></td>
                                 <td><?= $data['seasoning'] ?></td>

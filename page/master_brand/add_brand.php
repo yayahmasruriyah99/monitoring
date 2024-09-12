@@ -7,6 +7,10 @@
             <form method="post">
                     <!-- Kolom Kiri -->
                         <div class="mb-3">
+                            <label for="id" class="form-label">ID :</label>
+                            <input type="text" class="form-control" id="id" name="id">
+                        </div>
+                        <div class="mb-3">
                             <label for="brand" class="form-label">Brand :</label>
                             <input type="text" class="form-control" id="brand" name="brand">
                         </div>
@@ -42,11 +46,12 @@
 @$brand = $_POST['brand'];
 @$rasa = $_POST['rasa'];
 @$seasoning = $_POST['seasoning'];
+@$id = $_POST['id'];
 @$submit = $_POST['submit'];
 
 if (isset($submit)) {
 
-    $queryInsert = pg_query($dbconn, "INSERT INTO tbl_brand(brand, rasa, seasoning, id) VALUES ('$brand', '$rasa', '$seasoning', DEFAULT)");
+    $queryInsert = pg_query($dbconn, "INSERT INTO tbl_brand(brand, rasa, seasoning, id) VALUES ('$brand', '$rasa', '$seasoning', $id)");
 
     if ($queryInsert) {
 ?>
