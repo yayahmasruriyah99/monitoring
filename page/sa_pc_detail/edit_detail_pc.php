@@ -1,6 +1,7 @@
 <?php
 $id = $_GET['id'];
 $id_produk = $_GET['id_produk'];
+$loop = $_GET['loop'];
 
 $querySelect = pg_query($dbconn, "SELECT * FROM tbl_produk WHERE kode=$id_produk");
 $data = pg_fetch_assoc($querySelect);
@@ -168,14 +169,14 @@ if(isset($submit)){
 ?>
     <script>
         alert("Add Data Berhhasil");
-        window.location.href = "?page=index_detail_pc&id_sa=<?=$id_sa?>&id_produk=<?=$id_produk?>";
+        window.location.href = "?page=index_detail_pc&id_sa=<?=$id_sa?>&id_produk=<?=$id_produk?>&loop=<?=$loop?>";
     </script>
     <?php
     }else {
         ?>
         <script>
         alert("Add Data Berhhasil");
-        window.location.href = "?page=index_detail_pc&id_sa=<?=$id_sa?>&id_produk=<?=$id_produk?>";
+        window.location.href = "?page=index_detail_pc&id_sa=<?=$id_sa?>&id_produk=<?=$id_produk?>&loop=<?=$loop?>";
     </script>
        <?php  
     }

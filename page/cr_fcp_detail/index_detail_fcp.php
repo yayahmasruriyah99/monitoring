@@ -1,7 +1,7 @@
 <?php
     $id_sa = $_GET['id_sa'];
     $id_produk = $_GET['id_produk'];
-
+    $loop = $_GET['loop'];
     $querySelect = pg_query($dbconn, "SELECT * FROM tbl_sa_pc WHERE id=$id_sa");
     $data = pg_fetch_assoc($querySelect);
 ?>
@@ -9,7 +9,7 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <a href="?page=add_detail_fcp&id_sa=<?=$id_sa?>&id_produk=<?=$id_produk?>" class="btn btn-primary mb-3">Add</a>
+    <a href="?page=add_detail_fcp&id_sa=<?=$id_sa?>&id_produk=<?=$id_produk?>&loop=<?=$loop?>" class="btn btn-primary mb-3">Add</a>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -58,8 +58,8 @@
                                     <?= $data['result'] ?></td>
 
                                 <td>
-                                    <a href="?page=edit_detail_fcp&id=<?= $data['id'] ?>&id_produk=<?=$id_produk?>" class="btn btn-warning"><i class="fa fa-edit"></i></a>
-                                    <a href="?page=delete_detail_fcp&id=<?= $data['id'] ?>&id_sa=<?=$id_sa?>&id_produk=<?=$id_produk?>" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                    <a href="?page=edit_detail_fcp&id=<?= $data['id'] ?>&id_produk=<?=$id_produk?>&loop=<?=$loop?>" class="btn btn-warning"><i class="fa fa-edit"></i></a>
+                                    <a href="?page=delete_detail_fcp&id=<?= $data['id'] ?>&id_sa=<?=$id_sa?>&id_produk=<?=$id_produk?>&loop=<?=$loop?>" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
                         <?php } ?>

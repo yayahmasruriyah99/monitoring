@@ -1,6 +1,7 @@
 <?php
 $id_sa = $_GET['id_sa'];
 $id_produk = $_GET['id_produk'];
+$loop = $_GET['loop'];
 $queryLatestSampel = pg_query($dbconn, "SELECT MAX(sampel) as latest_sampel FROM tbl_cr_tws_detail WHERE id_sa=$id_sa");
 $latestSampelRow = pg_fetch_assoc($queryLatestSampel);
 $latestSampel = $latestSampelRow['latest_sampel'];
@@ -11,7 +12,7 @@ $tanggal_sekarang = date('Y-m-d');
 $shift = $_SESSION['shift'];
 
 //ambil seasoning nacl 
-$queryLastNacl = pg_query($dbconn,"SELECT tbl_sa_pc.*, tbl_cr_tws_detail.* FROM tbl_sa_pc, tbl_cr_tws_detail WHERE  tbl_sa_pc.id=tbl_cr_tws_detail.id_sa AND  tbl_sa_pc.tanggal='$tanggal_sekarang' AND tbl_sa_pc.shift='$shift' ORDER BY  tbl_cr_tws_detail.sampel DESC, tbl_cr_tws_detail.loop ASC");
+$queryLastNacl = pg_query($dbconn,"SELECT tbl_sa_pc.*, tbl_cr_tws_detail.* FROM tbl_sa_pc, tbl_cr_tws_detail WHERE  tbl_sa_pc.id=tbl_cr_tws_detail.id_sa AND  tbl_sa_pc.tanggal='$tanggal_sekarang' AND tbl_sa_pc.shift='$shift' AND tbl_sa_pc.loop='$loop' ORDER BY  tbl_cr_tws_detail.sampel DESC");
 
 $dataLastNacl = pg_fetch_assoc($queryLastNacl);
 $lastNacl = $dataLastNacl['seasoning_nacl']; 
@@ -180,14 +181,14 @@ if(isset($submit)){
 ?>
     <script>
         alert("Add Data Berhhasil");
-        window.location.href = "?page=index_detail_tws&id_sa=<?=$id_sa?>&id_produk=<?=$id_produk?>";
+        window.location.href = "?page=index_detail_tws&id_sa=<?=$id_sa?>&id_produk=<?=$id_produk?>&loop=<?=$loop?>";
     </script>
     <?php
     }else {
     ?>
     <script>
         alert("Add Data Gagal");
-        window.location.href = "?page=index_detail_tws&id_sa=<?=$id_sa?>&id_produk=<?=$id_produk?>";
+        window.location.href = "?page=index_detail_tws&id_sa=<?=$id_sa?>&id_produk=<?=$id_produk?>&loop=<?=$loop?>";
     </script>
     <?php    
     }

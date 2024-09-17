@@ -178,13 +178,13 @@
                                 <td>
                                     <a href="
                                     <?php if($data['line'] == 'PC32' ||$data['line'] == 'PC14' ||$data['line'] == 'Cassava' ){?> 
-                                        ?page=index_detail_pc&id_sa=<?= $data['id']?>&id_produk=<?= $data['kode']?> 
+                                        ?page=index_detail_pc&id_sa=<?= $data['id']?>&id_produk=<?= $data['kode']?>&loop=<?= $data['loop']?> 
                                     <?php }else if($data['line'] == 'TS'){?>
-                                        ?page=index_detail_ts&id_sa=<?= $data['id']?>&id_produk=<?= $data['kode']?>
+                                        ?page=index_detail_ts&id_sa=<?= $data['id']?>&id_produk=<?= $data['kode']?>&loop=<?= $data['loop']?>
                                     <?php }else if($data['line'] == 'TWS.5.6' || $data['line'] == 'TWS.7.2' ){?>
-                                        ?page=index_detail_tws&id_sa=<?= $data['id']?>&id_produk=<?= $data['kode']?>
+                                        ?page=index_detail_tws&id_sa=<?= $data['id']?>&id_produk=<?= $data['kode']?>&loop=<?= $data['loop']?>
                                     <?php }else if($data['line'] == 'FCP'){?>
-                                        ?page=index_detail_fcp&id_sa=<?= $data['id']?>&id_produk=<?= $data['kode']?>
+                                        ?page=index_detail_fcp&id_sa=<?= $data['id']?>&id_produk=<?= $data['kode']?>&loop=<?= $data['loop']?>
                                     <?php }?>
                                     " class="btn btn-success"><i class="fa fa-plus"></i></a>
                                     <a href="?page=edit_pc&id=<?= $data['id'] ?>" class="btn btn-warning"><i class="fa fa-edit"></i></a>

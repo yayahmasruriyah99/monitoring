@@ -37,9 +37,9 @@
                         $shift  = $_GET['shift'];
                         $line   = $_GET['line'];
                         
-                        $query = "SELECT tbl_cr_tws_detail.*, tbl_sa_pc.shift, tbl_sa_pc.nama_produk, tbl_sa_pc.analis, tbl_sa_pc.field FROM tbl_cr_tws_detail, tbl_sa_pc WHERE tbl_cr_tws_detail.line='$line' AND tbl_cr_tws_detail.tanggal >='$tanggal_start' AND tbl_cr_tws_detail.tanggal <='$tanggal_end' AND tbl_sa_pc.id=tbl_cr_tws_detail.id_sa ORDER BY tbl_sa_pc.shift ASC "  ;
-                        if ($shift !== 'all' && !empty($shift)) {
-                            $query .= " AND tbl_sa_pc.shift='$shift'";
+                        $query = "SELECT tbl_cr_tws_detail.*, tbl_sa_pc.shift, tbl_sa_pc.nama_produk, tbl_sa_pc.analis, tbl_sa_pc.field FROM tbl_cr_tws_detail, tbl_sa_pc WHERE tbl_cr_tws_detail.line='$line' AND tbl_cr_tws_detail.tanggal >='$tanggal_start' AND tbl_cr_tws_detail.tanggal <='$tanggal_end' AND tbl_sa_pc.id=tbl_cr_tws_detail.id_sa "  ;
+                        if ($shift !== "all") {
+                            $query .= " AND tbl_sa_pc.shift ='$shift'";
                         }
                         $result = pg_query($dbconn, $query);
 

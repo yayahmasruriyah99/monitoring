@@ -10,12 +10,12 @@
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="nama" class="form-label">Nama :</label>
-                            <input type="text" class="form-control" id="nama" name="nama">
+                            <input type="text" class="form-control" id="nama" name="nama" required>
                         </div>
                         <div class="mb-3">
                             <label for="regu" class="form-label">Regu :</label>
-                            <select class="form-control" name="regu" id="regu">
-                                <option selected>Open this select menu</option>
+                            <select class="form-control" name="regu" id="regu" required>
+                                <option value="">Open this select menu</option>
                                 <option value="A">A</option>
                                 <option value="B">B</option>
                                 <option value="C">C</option>
@@ -24,11 +24,20 @@
                         </div>
                         <div class="mb-3">
                             <label for="plant" class="form-label">Plant :</label>
-                            <select class="form-control" id="plant" name="plant">
-                                <option selected>Open this select menu</option>
+                            <select class="form-control" id="plant" name="plant" required>
+                                <option value="">Open this select menu</option>
                                 <option value="1402">1402</option>
                                 <option value="1403">1403</option>
                                 <option value="1405">1405</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="role" class="form-label">Role :</label>
+                            <select class="form-control" id="role" name="role" required>
+                                <option value="">Open this select menu</option>
+                                <option value="filed">QC Filed</option>
+                                <option value="analis">QC Analis</option>
+                                <option value="admin">QC Admin</option>
                             </select>
                         </div>
                     </div>
@@ -36,7 +45,7 @@
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="nik" class="form-label">NIK :</label>
-                            <input type="text" class="form-control" id="nik" name="nik">
+                            <input type="text" class="form-control" id="nik" name="nik" required>
                         </div>
                         <div class="mb-3">
                             <label for="username" class="form-label">Username :</label>
@@ -44,7 +53,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">Password :</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+                            <input type="password" class="form-control" id="exampleInputPassword1" name="password" required>
                         </div>
                         <div class="d-flex justify-content-end">
                             <button name="submit" type="submit" class="btn btn-primary">Submit</button>
@@ -72,11 +81,12 @@ $password = $_POST['password'];
 $regu = $_POST['regu'];
 $plant = $_POST['plant'];
 $nik = $_POST['nik'];
+$role = $_POST['role'];
 $submit = $_POST['submit'];
 
 if (isset($submit)) {
 
-    $queryInsert = pg_query($dbconn, "INSERT INTO tbl_user(nama, username, password, regu, plant, nik) VALUES ('$nama', $username, '$password', '$regu', '$plant', $nik)");
+    $queryInsert = pg_query($dbconn, "INSERT INTO tbl_user(nama, username, password, regu, plant, nik, role) VALUES ('$nama', $username, '$password', '$regu', '$plant', $nik, '$role')");
 
     if ($queryInsert) {
 ?>

@@ -1,6 +1,8 @@
 <?php
 $id_sa = $_GET['id_sa'];
 $id_produk = $_GET['id_produk'];
+$loop = $_GET['loop'];
+
 $queryLatestSampel = pg_query($dbconn, "SELECT MAX(sampel) as latest_sampel FROM tbl_cr_fcp_detail WHERE id_sa=$id_sa");
 $latestSampelRow = pg_fetch_assoc($queryLatestSampel);
 $latestSampel = $latestSampelRow['latest_sampel'];
@@ -10,7 +12,7 @@ session_start();
 $tanggal_sekarang = date('Y-m-d');
 $shift = $_SESSION['shift'];
 //ambil seasoning nacl 
-$queryLastNacl = pg_query($dbconn,"SELECT tbl_sa_pc.*, tbl_cr_fcp_detail.* FROM tbl_sa_pc, tbl_cr_fcp_detail WHERE tbl_sa_pc.id=tbl_cr_fcp_detail.id_sa AND tbl_sa_pc.tanggal=tbl_sa_pc.tanggal AND tbl_sa_pc.shift='$shift' ORDER BY tbl_cr_fcp_detail.sampel DESC, tbl_cr_fcp_detail.loop DESC");
+$queryLastNacl = pg_query($dbconn,"SELECT tbl_sa_pc.*, tbl_cr_fcp_detail.* FROM tbl_sa_pc, tbl_cr_fcp_detail WHERE tbl_sa_pc.id=tbl_cr_fcp_detail.id_sa AND tbl_sa_pc.tanggal=tbl_sa_pc.tanggal AND tbl_sa_pc.shift='$shift'AND tbl_sa_pc.loop='$loop' ORDER BY tbl_cr_fcp_detail.sampel DESC");
 
 $dataLastNacl = pg_fetch_assoc($queryLastNacl);
 $lastNacl = $dataLastNacl['seasoning_nacl']; 
@@ -115,11 +117,6 @@ $detailPc= pg_fetch_assoc($queryPc);
         var tsBagi = ts/100;
         var cr = (nacl * 100) / (((tsBagi) * seasoning_nacl) - nacl);
          // Validasi apakah sa adalah NaN atau Infinity
-        if (isNaN(cr) || !isFinite(cr)) {
-            alert("Error: The value of cr is not valid (NaN or Infinity). Please check your input.");
-            document.getElementById('cr').value = "Error";
-            return;
-        }
         //document.getElementById('sa').value = sa;
         document.getElementById('cr').value = cr.toFixed(3);
 
@@ -170,14 +167,14 @@ if(isset($submit)){
 ?>
     <script>
         alert("Add Data Berhhasil");
-        window.location.href = "?page=index_detail_fcp&id_sa=<?=$id_sa?>&id_produk=<?=$id_produk?>";
+        window.location.href = "?page=index_detail_fcp&id_sa=<?=$id_sa?>&id_produk=<?=$id_produk?>&loop=<?=$loop?>";
     </script>
     <?php
     }else {
     ?>
     <script>
         alert("Add Data Gagal");
-        window.location.href = "?page=index_detail_fcp&id_sa=<?=$id_sa?>&id_produk=<?=$id_produk?>";
+        window.location.href = "?page=index_detail_fcp&id_sa=<?=$id_sa?>&id_produk=<?=$id_produk?>&loop=<?=$loop?>";
     </script>
     <?php    
     }

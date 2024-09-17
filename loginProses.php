@@ -41,6 +41,7 @@ if ($cek > 0) {
     $_SESSION['nama']  = $fetch['nama'];
     $_SESSION['shift'] = $shift;
     $_SESSION['regu'] = $regu;
+    $_SESSION['role'] = $fetch['role'];
     
 ?>
     <script>

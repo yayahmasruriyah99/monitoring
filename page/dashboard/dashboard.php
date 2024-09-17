@@ -166,7 +166,7 @@
                         $shift = $_SESSION['shift'];
                         if(empty($loop)){
                             // $query = pg_query($dbconn, "SELECT tbl_sa_pc_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max FROM tbl_sa_pc_detail, tbl_sa_pc, tbl_produk WHERE tbl_produk.kode=tbl_sa_pc.kode AND tbl_sa_pc.id=tbl_sa_pc_detail.id_sa AND tbl_sa_pc_detail.tanggal='$tanggal_sekarang' AND tbl_sa_pc.shift='$shift'");
-                            $query = pg_query($dbconn, "SELECT tbl_sa_pc_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max  FROM tbl_sa_pc_detail, tbl_sa_pc, tbl_produk WHERE tbl_produk.kode=tbl_sa_pc.kode AND tbl_sa_pc.id=tbl_sa_pc_detail.id_sa AND tbl_sa_pc_detail.tanggal='$tanggal_sekarang' AND tbl_sa_pc.shift='$shift' ORDER BY tbl_sa_pc_detail.sampel ASC");
+                            $query = pg_query($dbconn, "SELECT tbl_sa_pc_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max  FROM tbl_sa_pc_detail, tbl_sa_pc, tbl_produk WHERE tbl_produk.kode=tbl_sa_pc.kode AND tbl_sa_pc_detail.loop=1 AND tbl_sa_pc.id=tbl_sa_pc_detail.id_sa AND tbl_sa_pc_detail.tanggal='$tanggal_sekarang' AND tbl_sa_pc.shift='$shift' ORDER BY tbl_sa_pc_detail.sampel ASC");
                         }else{
                             if($loop < 14){
                                 $query = pg_query($dbconn, "SELECT tbl_sa_pc_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max  FROM tbl_sa_pc_detail, tbl_sa_pc, tbl_produk WHERE tbl_produk.kode=tbl_sa_pc.kode AND tbl_sa_pc_detail.loop='$loop' AND tbl_sa_pc.id=tbl_sa_pc_detail.id_sa AND tbl_sa_pc_detail.tanggal='$tanggal_sekarang' AND tbl_sa_pc.shift='$shift' ORDER BY tbl_sa_pc_detail.sampel ASC");
@@ -174,7 +174,9 @@
                                 $query = pg_query($dbconn, "SELECT tbl_sa_ts_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max  FROM tbl_sa_ts_detail, tbl_sa_pc, tbl_produk WHERE tbl_produk.kode=tbl_sa_pc.kode AND tbl_sa_ts_detail.loop='$loop' AND tbl_sa_pc.id=tbl_sa_ts_detail.id_sa AND tbl_sa_ts_detail.tanggal='$tanggal_sekarang' AND tbl_sa_pc.shift='$shift' ORDER BY tbl_sa_ts_detail.sampel ASC");
                             }
                         } 
-                        
+                        $total_sa = 0; // Inisialisasi total_sa di luar loop
+                        $total_nacl = 0; // Inisialisasi total_nacl di luar loop
+                        $total_rows = 0; // Inisialisasi jumlah total baris
                         
                         while ($data = pg_fetch_assoc($query)) {
                             //$data_sa[] = $data['sa'];
@@ -183,6 +185,13 @@
                             $data_yellow_max[]  = (float) $data['yellow_max'];
                             $data_green_min[]  = (float) $data['green_min'];
                             $data_green_max[]  = (float) $data['green_max'];
+                             // Hitung jumlah baris secara manual, karena pg_fetch_assoc hanya mengembalikan satu baris dalam sekali iterasi
+                            $total_rows++;
+                            
+                            // Menambahkan nilai sa dan nacl ke total
+                            $total_sa += $data['sa'];
+                            $total_nacl += $data['nacl'];
+                            
                         ?>
                             <tr>
                                 <td><?=$data['loop']?></td>
@@ -199,7 +208,22 @@
                                     <?= $data['result'] ?>
                                 </td>
                             </tr>
-                        <?php } ?>
+                        <?php } 
+                        // Setelah loop selesai, tampilkan baris rata-rata
+                        if ($total_rows > 0) { // Hanya jika ada data
+                            ?>
+                            <tr>
+                                <td>Average</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><?= $total_sa / $total_rows ?></td>
+                                <td><?= $total_nacl / $total_rows ?></td>
+                                <td></td> <!-- Kosongkan kolom result -->
+                            </tr>
+                            <?php
+                        }
+                        ?>
                     </tbody>
                     </table>
                     </div>

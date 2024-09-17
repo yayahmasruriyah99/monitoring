@@ -1,7 +1,7 @@
 <?php
 $id = $_GET['id'];
 
-$querySelect = pg_query($dbconn, "SELECT * FROM tbl_sa_pc WHERE id = $id");
+$querySelect = pg_query($dbconn, "SELECT tbl_sa_pc.*, tbl_loop.bagian FROM tbl_sa_pc, tbl_loop WHERE id = $id");
 $data = pg_fetch_assoc($querySelect);
 ?>
 

@@ -1,6 +1,7 @@
 <?php
 $id = $_GET['id'];
 $id_produk = $_GET['id_produk'];
+$loop = $_GET['loop'];
 
 $querySelect = pg_query($dbconn, "SELECT * FROM tbl_produk WHERE kode=$id_produk");
 $data = pg_fetch_assoc($querySelect);
@@ -103,11 +104,6 @@ $select = pg_fetch_assoc($querySelect);
         // Hitung nilai D sebagai C + A
         var sa = nacl/(seasoning_nacl - base_nacl)*100;
          // Validasi apakah sa adalah NaN atau Infinity
-        if (isNaN(sa) || !isFinite(sa)) {
-            alert("Error: The value of sa is not valid (NaN or Infinity). Please check your input.");
-            document.getElementById('sa').value = "Error";
-            return;
-        }
         //document.getElementById('sa').value = sa;
         document.getElementById('sa').value = sa.toFixed(3);
 
@@ -157,14 +153,14 @@ if(isset($submit)){
 ?>
     <script>
         alert("Add Data Berhhasil");
-        window.location.href = "?page=index_detail_ts&id_sa=<?=$id_sa?>&id_produk=<?=$id_produk?>";
+        window.location.href = "?page=index_detail_ts&id_sa=<?=$id_sa?>&id_produk=<?=$id_produk?>&loop=<?=$loop?>";
     </script>
     <?php
     }else {
         ?>
         <script>
         alert("Add Data Berhhasil");
-        window.location.href = "?page=index_detail_ts&id_sa=<?=$id_sa?>&id_produk=<?=$id_produk?>";
+        window.location.href = "?page=index_detail_ts&id_sa=<?=$id_sa?>&id_produk=<?=$id_produk?>&loop=<?=$loop?>";
     </script>
        <?php  
     }

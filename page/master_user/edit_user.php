@@ -43,6 +43,15 @@ $data = pg_fetch_assoc($queryselect);
                                 <option <?php if ($data['plant'] == '1405'){echo "selected";} ?> value="1405">1405</option>
                             </select>
                         </div>
+                        <div class="mb-3">
+                            <label for="role" class="form-label">role :</label>
+                            <select class="form-control" id="role" name="role">
+                                <option>Open this select menu</option>
+                                <option <?php if ($data['role'] == 'field'){echo "selected";} ?> value="field">QC Field</option>
+                                <option <?php if ($data['role'] == 'analis'){echo "selected";} ?> value="analis">QC Analis</option>
+                                <option <?php if ($data['role'] == 'admin'){echo "selected";} ?> value="admin">QC Admin</option>
+                            </select>
+                        </div>
                     </div>
                     <!-- Kolom Kanan -->
                     <div class="col-md-6">
@@ -75,11 +84,12 @@ $password = $_POST['password'];
 $regu = $_POST['regu'];
 $plant = $_POST['plant'];
 $nik = $_POST['nik'];
+$role = $_POST['role'];
 $submit = $_POST['submit'];
 
 if (isset($submit)) {
 
-    $queryUpdate = pg_query($dbconn, "UPDATE tbl_user SET nama='$nama', password='$password', regu='$regu', plant='$plant'
+    $queryUpdate = pg_query($dbconn, "UPDATE tbl_user SET nama='$nama', password='$password', regu='$regu', plant='$plant', role='$role'
 	WHERE username=$id;");
 
     if ($queryUpdate) {
