@@ -44,7 +44,7 @@ $time_value = !empty($select['waktu']) ? date('H:i', strtotime($select['waktu'])
                         </div>
                         <div class="mb-3">
                             <label for="ts">Seasoning in Total Slurry :</label>
-                            <input type="number" class="form-control" id="ts" name="ts" value="<?= $select['ts']?>" oninput="calculate()" required>
+                            <input type="number" step='any' class="form-control" id="ts" name="ts" value="<?= $select['ts']?>" oninput="calculate()" required>
                         </div>
 
                         <div class="mb-3">

@@ -21,8 +21,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead style="background-color:#ff7f00;color:white">
                         <tr>
-                            <th>ID</th>
-                            <th>ID SA</th>
+                            
                             <th>Sampel Ke-</th>
                             <th>Seasoning Nacl</th>
                             <th>Base Nacl</th>
@@ -41,8 +40,7 @@
                         while ($data = pg_fetch_assoc($query)) {
                         ?>
                             <tr>
-                                <td><?=$data['id']?></td>
-                                <td><?=$data['id_sa']?></td>
+                                
                                 <td><?= $data['sampel']?></td>
                                 <td><?= $data['seasoning_nacl'] ?></td>
                                 <td><?= $data['base_nacl'] ?></td>

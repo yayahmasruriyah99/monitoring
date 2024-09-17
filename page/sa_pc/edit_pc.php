@@ -129,8 +129,8 @@ $data = pg_fetch_assoc($querySelect);
                             while ($data = pg_fetch_assoc($query)){
                         ?>
                         <tr>
-                            <td><?= $data['kode']?></td>
                             <td><?= $data['nama_produk']?></td>
+                            <td><?= $data['kode']?></td>
                             <td><button class="btn btn-warning name-option" data-dismiss="modal" data-nama_produk="<?= $data['nama_produk']?>" data-brand="<?= $data['brand']?>" data-rasa="<?= $data['rasa']?>" data-seasoning="<?= $data['seasoning']?>" data-size="<?= $data['size']?>" data-kode="<?= $data['kode']?>"><i class="fa fa-plus"></i></button></td>
                         </tr>
                         <?php
