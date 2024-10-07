@@ -35,7 +35,7 @@
                             <label for="role" class="form-label">Role :</label>
                             <select class="form-control" id="role" name="role" required>
                                 <option value="">Open this select menu</option>
-                                <option value="filed">QC Filed</option>
+                                <option value="field">QC Filed</option>
                                 <option value="analis">QC Analis</option>
                                 <option value="admin">QC Admin</option>
                             </select>
