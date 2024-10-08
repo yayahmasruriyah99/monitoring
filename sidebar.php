@@ -14,7 +14,7 @@
          <?php
         if($_SESSION['role'] == 'field'){
         ?>
-            <!-- Nav Item - Dashboard -->
+            <!-- Nav Item - Dashboard tambah-->
             <div class="sidebar-heading">
                 Dashboard
             </div>
