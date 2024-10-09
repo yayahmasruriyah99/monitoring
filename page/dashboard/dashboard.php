@@ -185,6 +185,7 @@
                             $data_yellow_max[]  = (float) $data['yellow_max'];
                             $data_green_min[]  = (float) $data['green_min'];
                             $data_green_max[]  = (float) $data['green_max'];
+                            $data_tanggal[] = date("Y-m-d");
                              // Hitung jumlah baris secara manual, karena pg_fetch_assoc hanya mengembalikan satu baris dalam sekali iterasi
                             $total_rows++;
                             
@@ -237,7 +238,7 @@
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Grafik Tanggal <?=$tanggal_sekarang = date("Y-m-d");?></h6>
                                     
                                 </div>
                                 <!-- Card Body -->
@@ -267,6 +268,7 @@
     var data_yellow_max = <?php echo json_encode($data_yellow_max); ?>;
     var data_green_min = <?php echo json_encode($data_green_min); ?>;
     var data_green_max = <?php echo json_encode($data_green_max); ?>;
+    var data_tanggal = <?php echo json_encode($data_tanggal); ?>;
 
     Highcharts.chart('container', {
         title: {
@@ -284,6 +286,14 @@
                 text: 'Nilai SA'
             }
         },
+        xAxis: {
+            title: {
+                text: 'Tanggal Input'
+            },
+            data: data_tanggal, 
+        },
+
+        
 
         xAxis: {
             title: {
@@ -330,6 +340,9 @@
         }
         
         ],
+         exporting: {
+        enabled: true
+    },
 
         responsive: {
             rules: [{

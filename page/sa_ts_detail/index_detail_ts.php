@@ -23,6 +23,7 @@
                         <tr>
                             
                             <th>Sampel Ke-</th>
+                            <th>Jam</th>
                             <th>Seasoning Nacl</th>
                             <th>FG Nacl</th>
                             <th>Seasoning Appliend</th>
@@ -42,6 +43,7 @@
                             <tr>
                                 
                                 <td><?= $data['sampel']?></td>
+                                 <td><?= $data['waktu']?></td>
                                 <td><?= $data['seasoning_nacl'] ?></td>
                                 <td><?= $data['fg_nacl'] ?></td>
                                 <td><?= $data['sa'] ?></td>
