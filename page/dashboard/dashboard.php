@@ -105,7 +105,7 @@
         <div class="col-md-1">
             <label for="line">Line</label>
             </div>    
-        <div class="col-md-4">
+        <div class="col-md-2">
                     <select name="loop" id="loop" class="form-control">
                        <?php
                        $querySelect = pg_query($dbconn, "SELECT * FROM tbl_loop LIMIT 15 ");
@@ -117,8 +117,28 @@
                        ?>
                     </select>
         </div>
-        <div class="col-md-5">
-             <button type="submit" class="btn btn-warning">Cari</button>
+        <div class="col-md-1">
+            <label for="tanggal">Tanggal</label>
+        </div>
+        <div class="col-md-2">
+             <input type="date" class="form-control" id="tanggal" placeholder="Tanggal" name="tanggal" value="<?php echo isset($_POST['tanggal']) ? $_POST['tanggal'] : ''; ?>" required>
+        </div>
+        <div class="col-md-1">
+            <label for="shift">Shift</label>
+        </div>
+        <div class="col-md-2 mb-3">
+                    <div class="form-group">
+                            <select class="form-control" id="shift" name="shift" required>
+                                <option value="">Selected Shift</option>
+                                <option value=1>1</option>
+                                <option value=2>2</option>
+                                <option value=3>3</option>
+                                <option value="all">All</option>
+                            </select>
+                    </div>
+        </div>
+        <div class="col-md-3">
+             <button type="submit" name="cari" id="btnCari" class="btn btn-warning">Cari</button>
         </div>
         </div>
         </form>
@@ -161,12 +181,13 @@
                     
                     <tbody>
                         <?php
-                       
-                        $tanggal_sekarang = date("Y-m-d");
-                        $shift = $_SESSION['shift'];
-                        if(empty($loop)){
+                       if (isset($_POST['cari'])){
+                        $tanggal = $_POST['tanggal'];
+                        $loop = $_POST['loop'];
+                        $shift = $_POST['shift'];
+                        
                             // $query = pg_query($dbconn, "SELECT tbl_sa_pc_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max FROM tbl_sa_pc_detail, tbl_sa_pc, tbl_produk WHERE tbl_produk.kode=tbl_sa_pc.kode AND tbl_sa_pc.id=tbl_sa_pc_detail.id_sa AND tbl_sa_pc_detail.tanggal='$tanggal_sekarang' AND tbl_sa_pc.shift='$shift'");
-                            $query = pg_query($dbconn, "SELECT tbl_sa_pc_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max  FROM tbl_sa_pc_detail, tbl_sa_pc, tbl_produk WHERE tbl_produk.kode=tbl_sa_pc.kode AND tbl_sa_pc_detail.loop=1 AND tbl_sa_pc.id=tbl_sa_pc_detail.id_sa AND tbl_sa_pc_detail.tanggal='$tanggal_sekarang' AND tbl_sa_pc.shift='$shift' ORDER BY tbl_sa_pc_detail.sampel ASC");
+                            $query = pg_query($dbconn, "SELECT tbl_sa_pc_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max  FROM tbl_sa_pc_detail, tbl_sa_pc, tbl_produk WHERE tbl_produk.kode=tbl_sa_pc.kode AND tbl_sa_pc_detail.loop=1 AND tbl_sa_pc.id=tbl_sa_pc_detail.id_sa AND tbl_sa_pc_detail.tanggal='$tanggal' AND tbl_sa_pc.shift='$shift' ORDER BY tbl_sa_pc_detail.sampel ASC");
                         }else{
                             if($loop < 14){
                                 $query = pg_query($dbconn, "SELECT tbl_sa_pc_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max  FROM tbl_sa_pc_detail, tbl_sa_pc, tbl_produk WHERE tbl_produk.kode=tbl_sa_pc.kode AND tbl_sa_pc_detail.loop='$loop' AND tbl_sa_pc.id=tbl_sa_pc_detail.id_sa AND tbl_sa_pc_detail.tanggal='$tanggal_sekarang' AND tbl_sa_pc.shift='$shift' ORDER BY tbl_sa_pc_detail.sampel ASC");
@@ -238,7 +259,7 @@
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Grafik Tanggal <?=$tanggal_sekarang = date("Y-m-d");?></h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Grafik Tanggal <?=$tanggal;?></h6>
                                     
                                 </div>
                                 <!-- Card Body -->
