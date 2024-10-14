@@ -35,11 +35,14 @@
                         </div>
                         <div class="col-md-3 mb-3">
                             <select name="line" id="line" class="form-control" required>
-                                <option value="">Select Line</option>
+                                <option value="">- Open this Select Menu -</option>
                                 <option value="PC32">PC32</option>
                                 <option value="PC14">PC14</option>
                                 <option value="Cassava">Cassava</option>
-                                <option value="all">All</option>
+                                <option value="TS">TS</option>
+                                <option value="TWS.5.6">TWS 5.6</option>
+                                <option value="TWS.7.2">TWS 7.2</option>
+                                <option value="FCP">FCP</option>
                             </select>
                         </div>
                         <div class="col-md-3 mb-3">

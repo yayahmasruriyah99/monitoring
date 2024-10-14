@@ -12,8 +12,9 @@ session_start();
 $tanggal_sekarang = date('Y-m-d');
 $shift = $_SESSION['shift'];
 //ambil seasoning nacl 
-$queryLastNacl = pg_query($dbconn,"SELECT tbl_sa_pc.*, tbl_cr_fcp_detail.* FROM tbl_sa_pc, tbl_cr_fcp_detail WHERE tbl_sa_pc.id=tbl_cr_fcp_detail.id_sa AND tbl_sa_pc.tanggal=tbl_sa_pc.tanggal AND tbl_sa_pc.shift='$shift'AND tbl_sa_pc.loop='$loop' ORDER BY tbl_cr_fcp_detail.sampel DESC");
+$queryLastNacl = pg_query($dbconn,"SELECT tbl_sa_pc.*, tbl_cr_fcp_detail.* FROM tbl_sa_pc, tbl_cr_fcp_detail WHERE tbl_sa_pc.id=tbl_cr_fcp_detail.id_sa AND tbl_sa_pc.tanggal='$tanggal_sekarang' AND tbl_sa_pc.shift='$shift'AND tbl_sa_pc.loop='$loop' ORDER BY tbl_cr_fcp_detail.sampel DESC");
 
+ 
 $dataLastNacl = pg_fetch_assoc($queryLastNacl);
 $lastNacl = $dataLastNacl['seasoning_nacl']; 
 $lastTs = $dataLastNacl['ts'];

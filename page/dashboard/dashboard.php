@@ -181,20 +181,25 @@
                     
                     <tbody>
                         <?php
-                       if(empty($loop)){
+                        $tanggal = $_POST['tanggal'];
+                        $shift = $_POST['shift'];
                         $tanggal_sekarang = date("Y-m-d");
                         $shift_sekarang = $_SESSION['shift'];
                         
-                            // $query = pg_query($dbconn, "SELECT tbl_sa_pc_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max FROM tbl_sa_pc_detail, tbl_sa_pc, tbl_produk WHERE tbl_produk.kode=tbl_sa_pc.kode AND tbl_sa_pc.id=tbl_sa_pc_detail.id_sa AND tbl_sa_pc_detail.tanggal='$tanggal_sekarang' AND tbl_sa_pc.shift='$shift'");
+                       if(isset($_POST['cari'])){
+                            
+
+                            if (!empty($loop) && !empty($tanggal) && !empty($shift)) {
+                                $query = pg_query($dbconn, "SELECT tbl_sa_pc_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max  FROM tbl_sa_pc_detail, tbl_sa_pc, tbl_produk WHERE tbl_produk.kode=tbl_sa_pc.kode AND tbl_sa_pc_detail.loop='$loop' AND tbl_sa_pc.id=tbl_sa_pc_detail.id_sa AND tbl_sa_pc_detail.tanggal='$tanggal' AND tbl_sa_pc.shift='$shift' ORDER BY tbl_sa_pc_detail.sampel ASC");
+                            }
+                        }else if(empty($loop)){
+
+                        
+                        
                             $query = pg_query($dbconn, "SELECT tbl_sa_pc_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max  FROM tbl_sa_pc_detail, tbl_sa_pc, tbl_produk WHERE tbl_produk.kode=tbl_sa_pc.kode AND tbl_sa_pc_detail.loop=1 AND tbl_sa_pc.id=tbl_sa_pc_detail.id_sa AND tbl_sa_pc_detail.tanggal='$tanggal_sekarang' AND tbl_sa_pc.shift='$shift_sekarang' ORDER BY tbl_sa_pc_detail.sampel ASC");
                         
-                        }else if(isset($_POST['cari'])){
-                            $tanggal = $_POST['tanggal'];
-                            $loop = $_POST['loop'];
-                            $shift = $_POST['shift'];
-
-                            $query = pg_query($dbconn, "SELECT tbl_sa_pc_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max  FROM tbl_sa_pc_detail, tbl_sa_pc, tbl_produk WHERE tbl_produk.kode=tbl_sa_pc.kode AND tbl_sa_pc_detail.loop=1 AND tbl_sa_pc.id=tbl_sa_pc_detail.id_sa AND tbl_sa_pc_detail.tanggal='$tanggal' AND tbl_sa_pc.shift='$shift' ORDER BY tbl_sa_pc_detail.sampel ASC");
-
+                        
+                            
                         }else{
                             if($loop < 14){
                                 $query = pg_query($dbconn, "SELECT tbl_sa_pc_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max  FROM tbl_sa_pc_detail, tbl_sa_pc, tbl_produk WHERE tbl_produk.kode=tbl_sa_pc.kode AND tbl_sa_pc_detail.loop='$loop' AND tbl_sa_pc.id=tbl_sa_pc_detail.id_sa AND tbl_sa_pc_detail.tanggal='$tanggal_sekarang' AND tbl_sa_pc.shift='$shift' ORDER BY tbl_sa_pc_detail.sampel ASC");
@@ -371,6 +376,7 @@
          exporting: {
         enabled: true
     },
+    
 
         responsive: {
             rules: [{
