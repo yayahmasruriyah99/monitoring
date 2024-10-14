@@ -242,7 +242,15 @@
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Grafik Tanggal 
+                                        <?php
+                                        $tanggal_sekarang = date('Y-m-d');
+                                        if($tanggal_sekarang  = date('Y-m-d')){
+                                            echo $tanggal_sekarang  = date('Y-m-d');
+                                        }else{
+                                            echo $tanggal;
+                                        }?>
+                                        </h6>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
