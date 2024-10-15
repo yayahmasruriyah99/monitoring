@@ -173,6 +173,9 @@
                                 <th>Sampel Ke</th>
                                 <th>Jam</th>
                                 <th>Nama Produk</th>
+                                <th>Seasoning NaCl</th>
+                                <th>Base NaCl</th>
+                                <th>FG NaCl</th>
                                 <th>NaCl</th>
                                 <th>Coating Ratio</th>
                                 <th>Result</th>
@@ -209,6 +212,9 @@
                                     AND tbl_sa_pc.shift = '$shift'");
                             }
                         } 
+                        $total_sa = 0; // Inisialisasi total_sa di luar loop
+                        $total_nacl = 0; // Inisialisasi total_nacl di luar loop
+                        $total_rows = 0; // Inisialisasi jumlah total baris
                         
                         
                         while ($data = pg_fetch_assoc($query)) {
@@ -218,12 +224,21 @@
                             $data_yellow_max[]  = (float) $data['yellow_max'];
                             $data_green_min[]  = (float) $data['green_min'];
                             $data_green_max[]  = (float) $data['green_max'];
+
+                            $total_rows++;
+                            
+                            // Menambahkan nilai sa dan nacl ke total
+                            $total_cr += $data['cr'];
+                            $total_nacl += $data['nacl'];
                         ?>
                             <tr>
                                 <td><?=$data['loop']?></td>
                                 <td><?= $data['sampel']?></td>
                                 <td><?= $data['waktu']?></td>
                                 <td><?=$data['nama_produk']?></td>
+                                <td><?=$data['seasoning_nacl']?></td>
+                                <td><?=$data['base_nacl']?></td>
+                                <td><?=$data['fg_nacl']?></td>
                                 <td><?= $data['nacl'] ?></td>
                                 <td><?= $data['cr'] ?></td>
                                 
@@ -234,7 +249,26 @@
                                     <?= $data['result'] ?>
                                 </td>
                             </tr>
-                        <?php } ?>
+                            
+                        <?php } 
+                        // Setelah loop selesai, tampilkan baris rata-rata
+                        if ($total_rows > 0) { // Hanya jika ada data
+                            ?>
+                            <tr>
+                                <td>Average</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><?= $total_nacl / $total_rows ?></td>
+                                <td><?= $total_cr / $total_rows ?></td>
+                                <td></td> <!-- Kosongkan kolom result -->
+                            </tr>
+                            <?php
+                        }
+                        ?>
                     </tbody>
                     </table>
                     </div>

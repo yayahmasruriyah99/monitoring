@@ -116,55 +116,6 @@
                         }
                         
                         
-                        
-                        /*
-                        session_start();
-
-                        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cari'])) {
-                            $_SESSION['tanggal'] = $_POST['tanggal'];
-                            $_SESSION['shift'] = $_POST['shift'];
-                            $_SESSION['line'] = $_POST['line'];
-                            $_SESSION['cari'] = $_POST['cari'];
-
-                            // Redirect untuk menghindari form resubmission
-                            header("Location: " . $_SERVER['PHP_SELF']);
-                            exit;
-                        }
-
-                        // Mengambil nilai dari sesi jika tersedia
-                        $tanggal = isset($_SESSION['tanggal']) ? $_SESSION['tanggal'] : date("Y-m-d");
-                        $shift = isset($_SESSION['shift']) ? $_SESSION['shift'] : 'all';
-                        $line = isset($_SESSION['line']) ? $_SESSION['line'] : 'all';
-                        $cari = isset($_SESSION['cari']) ? $_SESSION['cari'] : null;
-
-                        // Membuat query berdasarkan nilai dari sesi
-                        if ($cari !== null) {
-                            $query = "SELECT * FROM tbl_sa_pc WHERE tanggal='$tanggal'";
-                            if ($shift !== 'all' && !empty($shift)) {
-                                $query .= " AND shift='$shift'";
-                            }
-                            if ($line !== 'all' && !empty($line)) {
-                                $query .= " AND line='$line'";
-                            }
-                            $result = pg_query($dbconn, $query);
-                        } else {
-                            $tanggal_sekarang = date("Y-m-d");
-                            $shift_sekarang = isset($_SESSION['shift']) ? $_SESSION['shift'] : null;
-
-                            $query = "SELECT tbl_sa_pc.*, tbl_loop.bagian FROM tbl_sa_pc, tbl_loop 
-                                    WHERE tbl_sa_pc.loop=tbl_loop.loop AND tbl_sa_pc.tanggal='$tanggal_sekarang'";
-                            if ($shift_sekarang !== null) {
-                                $query .= " AND tbl_sa_pc.shift='$shift_sekarang'";
-                            }
-                            $result = pg_query($dbconn, $query);
-                        }
-
-                        // Pastikan hasil query valid sebelum digunakan
-                        if (!$result) {
-                            echo "Terjadi kesalahan dalam menjalankan query.";
-                        }
-
-                        */
                         $no = 1;
                         while ($data = pg_fetch_assoc($result)) {
                         ?>

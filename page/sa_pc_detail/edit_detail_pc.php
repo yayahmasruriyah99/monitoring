@@ -119,7 +119,7 @@ $select = pg_fetch_assoc($querySelect);
             return;
         }
         //document.getElementById('sa').value = sa;
-        document.getElementById('sa').value = sa.toFixed(3);
+        document.getElementById('sa').value = sa.toFixed(1);
 
         // Get result based on condition
         var yellowMin = <?= json_encode($data['yellow_min'] ?? 0) ?>; // Ensure yellow_min is defined

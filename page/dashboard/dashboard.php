@@ -173,8 +173,11 @@
                                 <th>Sampel</th>
                                 <th>Jam</th>
                                 <th>Nama Produk</th>
+                                <th>Seasoning NaCl</th>
+                                <th>FG Nacl</th>
+                                <th>Base Nacl</th>
+                                <th>FG-Base Nacl</th>
                                 <th>Seasoning Appled</th>
-                                <th>Nacl</th>
                                 <th>Result</th>
                             </tr>
                         </thead>
@@ -232,8 +235,11 @@
                                 <td><?= $data['sampel']?></td>
                                 <td><?= $data['waktu']?></td>
                                 <td><?=$data['nama_produk']?></td>
-                                <td><?= $data['sa'] ?></td>
+                                <td><?= $data['seasoning_nacl']?></td>
+                                <td><?=$data['fg_nacl']?></td>
+                                <td><?=$data['base_nacl']?></td>
                                 <td><?= $data['nacl'] ?></td>
+                                <td><?= $data['sa'] ?></td>
                                 
                                 <td style="display: flex; justify-content: center; align-items: center;" class="<?= 
                                     $data['result'] == 'green' ? 'btn btn-success' : 
@@ -251,8 +257,11 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td><?= $total_sa / $total_rows ?></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                                 <td><?= $total_nacl / $total_rows ?></td>
+                                <td><?= $total_sa / $total_rows ?></td>
                                 <td></td> <!-- Kosongkan kolom result -->
                             </tr>
                             <?php

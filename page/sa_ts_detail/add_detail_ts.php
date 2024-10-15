@@ -110,7 +110,7 @@ $detailPc= pg_fetch_assoc($queryPc);
         var sa = (fg_nacl / seasoning_nacl)*100;
          // Validasi apakah sa adalah NaN atau Infinity
         //document.getElementById('sa').value = sa;
-        document.getElementById('sa').value = sa.toFixed(3);
+        document.getElementById('sa').value = sa.toFixed(1);
 
         // Get result based on condition
         var yellowMin = <?= json_encode($data['yellow_min'] ?? 0) ?>; // Ensure yellow_min is defined
