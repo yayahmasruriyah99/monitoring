@@ -127,15 +127,15 @@
             <label for="shift">Shift</label>
         </div>
         <div class="col-md-2 mb-3">
-                    <div class="form-group">
-                            <select class="form-control" id="shift" name="shift" required>
-                                <option value="">Selected Shift</option>
-                                <option value=1>1</option>
-                                <option value=2>2</option>
-                                <option value=3>3</option>
-                                <option value="all">All</option>
-                            </select>
-                    </div>
+            <div class="form-group">
+                <select class="form-control" id="shift" name="shift" required>
+                    <option value="">Selected Shift</option>
+                    <option value="1" <?php echo isset($_POST['shift']) && $_POST['shift'] == '1' ? 'selected' : ''; ?>>1</option>
+                    <option value="2" <?php echo isset($_POST['shift']) && $_POST['shift'] == '2' ? 'selected' : ''; ?>>2</option>
+                    <option value="3" <?php echo isset($_POST['shift']) && $_POST['shift'] == '3' ? 'selected' : ''; ?>>3</option>
+                    <option value="all" <?php echo isset($_POST['shift']) && $_POST['shift'] == 'all' ? 'selected' : ''; ?>>All</option>
+                </select>
+            </div>
         </div>
         <div class="col-md-3">
              <button type="submit" name="cari" id="btnCari" class="btn btn-warning">Cari</button>

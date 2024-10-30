@@ -85,7 +85,7 @@ $select = pg_fetch_assoc($querySelect);
                         </div>
                         <div class="mb-3">
                             <label for="result">Result :</label>
-                            <input type="text" class="form-control" id="result" name="result"  oninput="calculate()" value="<?=$select['result']?>">
+                            <input type="text" class="form-control" id="result" name="result"  oninput="calculate()" value="<?=$select['result']?>" readonly>
                         </div>
                         
                             <div class="d-flex justify-content-end">

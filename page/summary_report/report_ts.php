@@ -58,7 +58,7 @@
                             <td><?= $data['line']?></td>
                             <td><?= $data['waktu'] ?></td>
                             <td><?= $data['seasoning_nacl'] ?></td>
-                            <td><?= $data['nacl'] ?></td>
+                            <td><?= $data['fg_nacl'] ?></td>
                             <td><?= $data['sa'] ?></td>
                             <td><?= $data['standar'] ?></td>
                             <td><?= $data['status'] ?></td>

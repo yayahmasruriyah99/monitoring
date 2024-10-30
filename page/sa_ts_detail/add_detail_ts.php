@@ -86,7 +86,7 @@ $detailPc= pg_fetch_assoc($queryPc);
                         </div>
                         <div class="mb-3">
                             <label for="result">Result :</label>
-                            <input type="text" class="form-control" id="result" name="result"  oninput="calculate()" required>
+                            <input type="text" class="form-control" id="result" name="result"  oninput="calculate()" required readonly>
                         </div>
                         
                             <div class="d-flex justify-content-end">

@@ -93,7 +93,7 @@ $time_value = !empty($select['waktu']) ? date('H:i', strtotime($select['waktu'])
                         </div>
                         <div class="mb-3">
                             <label for="result">Result :</label>
-                            <input type="text" class="form-control" id="result" name="result"  oninput="calculate()" value="<?=$select['result']?>" required>
+                            <input type="text" class="form-control" id="result" name="result"  oninput="calculate()" value="<?=$select['result']?>" required readonly>
                         </div>
                         
                             <div class="d-flex justify-content-end">

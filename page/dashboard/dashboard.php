@@ -127,15 +127,15 @@
             <label for="shift">Shift</label>
         </div>
         <div class="col-md-2 mb-3">
-                    <div class="form-group">
-                            <select class="form-control" id="shift" name="shift" required>
-                                <option value="">Selected Shift</option>
-                                <option value=1>1</option>
-                                <option value=2>2</option>
-                                <option value=3>3</option>
-                                <option value="all">All</option>
-                            </select>
-                    </div>
+            <div class="form-group">
+                <select class="form-control" id="shift" name="shift" required>
+                    <option value="">Selected Shift</option>
+                    <option value="1" <?php echo isset($_POST['shift']) && $_POST['shift'] == '1' ? 'selected' : ''; ?>>1</option>
+                    <option value="2" <?php echo isset($_POST['shift']) && $_POST['shift'] == '2' ? 'selected' : ''; ?>>2</option>
+                    <option value="3" <?php echo isset($_POST['shift']) && $_POST['shift'] == '3' ? 'selected' : ''; ?>>3</option>
+                    <option value="all" <?php echo isset($_POST['shift']) && $_POST['shift'] == 'all' ? 'selected' : ''; ?>>All</option>
+                </select>
+            </div>
         </div>
         <div class="col-md-3">
              <button type="submit" name="cari" id="btnCari" class="btn btn-warning">Cari</button>
@@ -189,27 +189,18 @@
                         $tanggal_sekarang = date("Y-m-d");
                         $shift_sekarang = $_SESSION['shift'];
                         
-                       if(isset($_POST['cari'])){
-                            
-
+                       if (isset($_POST['cari'])) {
                             if (!empty($loop) && !empty($tanggal) && !empty($shift)) {
-                                $query = pg_query($dbconn, "SELECT tbl_sa_pc_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max  FROM tbl_sa_pc_detail, tbl_sa_pc, tbl_produk WHERE tbl_produk.kode=tbl_sa_pc.kode AND tbl_sa_pc_detail.loop='$loop' AND tbl_sa_pc.id=tbl_sa_pc_detail.id_sa AND tbl_sa_pc_detail.tanggal='$tanggal' AND tbl_sa_pc.shift='$shift' ORDER BY tbl_sa_pc_detail.sampel ASC");
+                                if ($loop < 14) {
+                                    $query = pg_query($dbconn, "SELECT tbl_sa_pc_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max FROM tbl_sa_pc_detail, tbl_sa_pc, tbl_produk WHERE tbl_produk.kode=tbl_sa_pc.kode AND tbl_sa_pc_detail.loop='$loop' AND tbl_sa_pc.id=tbl_sa_pc_detail.id_sa AND tbl_sa_pc_detail.tanggal='$tanggal' AND tbl_sa_pc.shift='$shift' ORDER BY tbl_sa_pc_detail.sampel ASC");
+                                } elseif ($loop >= 14 && $loop <= 15) {
+                                    $query = pg_query($dbconn, "SELECT tbl_sa_ts_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max FROM tbl_sa_ts_detail, tbl_sa_pc, tbl_produk WHERE tbl_produk.kode=tbl_sa_pc.kode AND tbl_sa_ts_detail.loop='$loop' AND tbl_sa_pc.id=tbl_sa_ts_detail.id_sa AND tbl_sa_ts_detail.tanggal='$tanggal' AND tbl_sa_pc.shift='$shift' ORDER BY tbl_sa_ts_detail.sampel ASC");
+                                }
                             }
-                        }else if(empty($loop)){
+                        } elseif (empty($loop)) {
+                            $query = pg_query($dbconn, "SELECT tbl_sa_pc_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max FROM tbl_sa_pc_detail, tbl_sa_pc, tbl_produk WHERE tbl_produk.kode=tbl_sa_pc.kode AND tbl_sa_pc_detail.loop=1 AND tbl_sa_pc.id=tbl_sa_pc_detail.id_sa AND tbl_sa_pc_detail.tanggal='$tanggal_sekarang' AND tbl_sa_pc.shift='$shift_sekarang' ORDER BY tbl_sa_pc_detail.sampel ASC");
+                        }
 
-                        
-                        
-                            $query = pg_query($dbconn, "SELECT tbl_sa_pc_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max  FROM tbl_sa_pc_detail, tbl_sa_pc, tbl_produk WHERE tbl_produk.kode=tbl_sa_pc.kode AND tbl_sa_pc_detail.loop=1 AND tbl_sa_pc.id=tbl_sa_pc_detail.id_sa AND tbl_sa_pc_detail.tanggal='$tanggal_sekarang' AND tbl_sa_pc.shift='$shift_sekarang' ORDER BY tbl_sa_pc_detail.sampel ASC");
-                        
-                        
-                            
-                        }else{
-                            if($loop < 14){
-                                $query = pg_query($dbconn, "SELECT tbl_sa_pc_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max  FROM tbl_sa_pc_detail, tbl_sa_pc, tbl_produk WHERE tbl_produk.kode=tbl_sa_pc.kode AND tbl_sa_pc_detail.loop='$loop' AND tbl_sa_pc.id=tbl_sa_pc_detail.id_sa AND tbl_sa_pc_detail.tanggal='$tanggal_sekarang' AND tbl_sa_pc.shift='$shift' ORDER BY tbl_sa_pc_detail.sampel ASC");
-                            }else if($loop >= 14 && $loop <= 15){
-                                $query = pg_query($dbconn, "SELECT tbl_sa_ts_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max  FROM tbl_sa_ts_detail, tbl_sa_pc, tbl_produk WHERE tbl_produk.kode=tbl_sa_pc.kode AND tbl_sa_ts_detail.loop='$loop' AND tbl_sa_pc.id=tbl_sa_ts_detail.id_sa AND tbl_sa_ts_detail.tanggal='$tanggal_sekarang' AND tbl_sa_pc.shift='$shift' ORDER BY tbl_sa_ts_detail.sampel ASC");
-                            }
-                        } 
                         $total_sa = 0; // Inisialisasi total_sa di luar loop
                         $total_nacl = 0; // Inisialisasi total_nacl di luar loop
                         $total_rows = 0; // Inisialisasi jumlah total baris
