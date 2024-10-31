@@ -11,10 +11,6 @@
                             <input type="date" class="form-control" id="tanggal" name="tanggal" required>
                         </div>
                         <div class="mb-3">
-                            <label for="shift">Shift :</label>
-                            <input type="number" class="form-control" id="shift" name="shift" required readonly value="<?=$_SESSION['shift']?>">
-                        </div>
-                        <div class="mb-3">
                             <label for="regu">Regu :</label>
                             <input type="text" class="form-control" id="regu" name="regu" required readonly value="<?=$_SESSION['regu']?>">
                         </div>
@@ -41,12 +37,6 @@
                             </select>
 
                         </div>
-                        
-                        
-                        
-                        
-                    </div>
-                    <div class="col-md-6">
                         <div class="mb-3">
                             <label for="nama_produk">Nama Produk :</label>
                             <div class="d-flex align-items-center">
@@ -58,6 +48,13 @@
                             </div>  
                             </div>
                         </div>
+                        
+                        
+                        
+                        
+                    </div>
+                    <div class="col-md-6">
+                        
                         <div class="mb-3">
                             <label for="kode">Kode Etiket :</label>
                             <input type="number" class="form-control" name="kode" id="kode" readonly required>

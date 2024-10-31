@@ -50,6 +50,10 @@ $data = pg_fetch_assoc($querySelect);
                             <input type="text" class="form-control" name="seasoning" id="seasoning" readonly required value="<?=$data['seasoning']?>">
                             
                         </div>
+                        <div class="mb-3">
+                            <label for="slury">Seasoning in Total Slury :</label>
+                            <input type="number" class="form-control" id="slury" name="slury" required value="<?=$data['slury']?>">
+                        </div>
                         
                         
                     </div>
@@ -76,7 +80,7 @@ $data = pg_fetch_assoc($querySelect);
                         </div>
                         <div class="mb-3">
                             <label for="standar">Standar PQS :</label>
-                            <input type="text" class="form-control" id="standar" name="standar" readonly oninput="standars()" required value="<?=$data['standar']?>">
+                            <input type="text" class="form-control" id="standar" name="standar" readonly oninput="standars()" required>
                         </div>
 
                             <div class="d-flex justify-content-end">

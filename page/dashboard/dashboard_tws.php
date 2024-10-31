@@ -123,10 +123,10 @@
         <div class="col-md-2">
              <input type="date" class="form-control" id="tanggal" placeholder="Tanggal" name="tanggal" value="<?php echo isset($_POST['tanggal']) ? $_POST['tanggal'] : ''; ?>" required>
         </div>
-        <div class="col-md-1">
+        <!-- <div class="col-md-1">
             <label for="shift">Shift</label>
-        </div>
-        <div class="col-md-2 mb-3">
+        </div> -->
+        <!-- <div class="col-md-2 mb-3">
             <div class="form-group">
                 <select class="form-control" id="shift" name="shift" required>
                     <option value="">Selected Shift</option>
@@ -136,7 +136,7 @@
                     <option value="all" <?php echo isset($_POST['shift']) && $_POST['shift'] == 'all' ? 'selected' : ''; ?>>All</option>
                 </select>
             </div>
-        </div>
+        </div> -->
         <div class="col-md-3">
              <button type="submit" name="cari" id="btnCari" class="btn btn-warning">Cari</button>
         </div>
@@ -169,6 +169,7 @@
                     <table class="table table-bordered" id="example"  border="1" width="100%" cellspacing="0">
                         <thead>
                             <tr>
+                                <th>Shift</th>
                                 <th>Loop</th>
                                 <th>Sampel Ke</th>
                                 <th>Jam</th>
@@ -194,12 +195,12 @@
                             
 
                             if (!empty($loop) && !empty($tanggal) && !empty($shift)) {
-                             $query = pg_query($dbconn, "SELECT tbl_cr_tws_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max FROM tbl_cr_tws_detail, tbl_sa_pc, tbl_produk WHERE tbl_cr_tws_detail.loop='$loop' AND tbl_produk.kode=tbl_sa_pc.kode  AND tbl_sa_pc.id=tbl_cr_tws_detail.id_sa AND tbl_cr_tws_detail.tanggal='$tanggal' AND tbl_sa_pc.shift='$shift'");
+                             $query = pg_query($dbconn, "SELECT tbl_cr_tws_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max FROM tbl_cr_tws_detail, tbl_sa_pc, tbl_produk WHERE tbl_cr_tws_detail.loop='$loop' AND tbl_produk.kode=tbl_sa_pc.kode  AND tbl_sa_pc.id=tbl_cr_tws_detail.id_sa AND tbl_cr_tws_detail.tanggal='$tanggal'");
                             }
                         }else if(empty($loop)){
                             
 
-                            $query = pg_query($dbconn, "SELECT tbl_cr_tws_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max FROM tbl_cr_tws_detail, tbl_sa_pc, tbl_produk WHERE tbl_cr_tws_detail.loop=16 AND tbl_produk.kode=tbl_sa_pc.kode  AND tbl_sa_pc.id=tbl_cr_tws_detail.id_sa AND tbl_cr_tws_detail.tanggal='$tanggal_sekarang' AND tbl_sa_pc.shift='$shift_sekarang'");
+                            $query = pg_query($dbconn, "SELECT tbl_cr_tws_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max FROM tbl_cr_tws_detail, tbl_sa_pc, tbl_produk WHERE tbl_cr_tws_detail.loop=16 AND tbl_produk.kode=tbl_sa_pc.kode  AND tbl_sa_pc.id=tbl_cr_tws_detail.id_sa AND tbl_cr_tws_detail.tanggal='$tanggal_sekarang'");
 
                         }else{
                             if($loop >= 16 && $loop <= 19){
@@ -208,8 +209,7 @@
                                     WHERE tbl_produk.kode = tbl_sa_pc.kode 
                                     AND tbl_cr_tws_detail.loop = '$loop' 
                                     AND tbl_sa_pc.id = tbl_cr_tws_detail.id_sa 
-                                    AND tbl_cr_tws_detail.tanggal = '$tanggal_sekarang' 
-                                    AND tbl_sa_pc.shift = '$shift'");
+                                    AND tbl_cr_tws_detail.tanggal = '$tanggal_sekarang'");
                             }
                         } 
                         $total_sa = 0; // Inisialisasi total_sa di luar loop
@@ -232,6 +232,7 @@
                             $total_nacl += $data['nacl'];
                         ?>
                             <tr>
+                                <td><?= $data['shift']?></td>
                                 <td><?=$data['loop']?></td>
                                 <td><?= $data['sampel']?></td>
                                 <td><?= $data['waktu']?></td>
@@ -256,6 +257,7 @@
                             ?>
                             <tr>
                                 <td>Average</td>
+                                <td></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>

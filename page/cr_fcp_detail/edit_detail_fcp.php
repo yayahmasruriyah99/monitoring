@@ -24,6 +24,10 @@ $time_value = !empty($select['waktu']) ? date('H:i', strtotime($select['waktu'])
                             <label for="tanggal">Tanggal :</label>
                             <input type="date" class="form-control" id="tanggal" name="tanggal" required value="<?=$select['tanggal']?>" readonly>
                         </div>
+                        <div>
+                            <label for="waktu">Shift :</label>
+                            <input type="text" class="form-control" id="shift" name="shift" value="<?=$select['shift']?>" required readonly>
+                        </div>
                         <div class="mb-3">
                             <label for="waktu">Time :</label>
                             <input type="time" class="form-control" id="waktu" name="waktu" value="<?=$time_value?>" required>
@@ -43,18 +47,18 @@ $time_value = !empty($select['waktu']) ? date('H:i', strtotime($select['waktu'])
                         </div>
                         <div class="mb-3">
                             <label for="ts">Seasoning in Total Slurry :</label>
-                            <input type="number" class="form-control" id="ts" name="ts" value="<?php echo $select['ts']?>" step="any" oninput="calculate()" required>
+                            <input type="number" class="form-control" id="ts" name="ts" value="<?= $select['ts']?>" step="any" oninput="calculate()" required>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="seasoning_nacl">Seasoning Nacl :</label>
-                            <input type="number" value="<?php echo $select['seasoning_nacl']?>" step='any' class="form-control" id="seasoning_nacl" name="seasoning_nacl" oninput="calculate()" required>
-                        </div>
+                        
                         
                         
                     </div>
                     <div class="col-md-6">
-                        
+                        <div class="mb-3">
+                            <label for="seasoning_nacl">Seasoning Nacl :</label>
+                            <input type="number" value="<?php echo $select['seasoning_nacl']?>" step='any' class="form-control" id="seasoning_nacl" name="seasoning_nacl" oninput="calculate()" required>
+                        </div>
                         <div class="mb-3" hidden>
                             <label for="id_sa">ID SA :</label>
                             <input type="number" step='any' class="form-control" id="id_sa" name="id_sa" value="<?=$select['id_sa']?>" required>
@@ -67,7 +71,7 @@ $time_value = !empty($select['waktu']) ? date('H:i', strtotime($select['waktu'])
                             <label for="cr">Coating Ratio (%) :</label>
                             <input type="number" step='any' class="form-control"  id="cr" name="cr" value="<?=$select['cr']?>"  readonly required>
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3" hidden>
                             <label for="standar">Standard PQS / PLS  :</label>
                             <input type="text" step='any' class="form-control" id="standar" name="standar" value="<?= $select['standar']?>" readonly required >
                         </div>
@@ -150,11 +154,12 @@ $result = $_POST['result'];
 $tanggal = $_POST['tanggal'];
 $loop = $_POST['loop'];
 $line = $_POST['line'];
+$shift = $_POST['shift'];
 $submit = $_POST['submit'];
 
 if(isset($submit)){
     $queryInsert = pg_query($dbconn, "UPDATE public.tbl_cr_fcp_detail
-	SET sampel=$sampel, ts=$ts, seasoning_nacl=$seasoning_nacl, nacl=$nacl, cr=$cr, status='$status', id_sa=$id_sa, waktu='$waktu', standar='$standar', result='$result', loop=$loop, tanggal='$tanggal', line='$line' WHERE id=$id;");
+	SET sampel=$sampel, ts=$ts, seasoning_nacl=$seasoning_nacl, nacl=$nacl, cr=$cr, status='$status', id_sa=$id_sa, waktu='$waktu', standar='$standar', result='$result', loop=$loop, tanggal='$tanggal', line='$line', shift='$shift' WHERE id=$id;");
     
     if($queryInsert){
         session_start();

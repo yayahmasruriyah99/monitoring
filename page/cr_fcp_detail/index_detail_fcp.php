@@ -21,7 +21,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead style="background-color:#ff7f00;color:white">
                         <tr>
-                            
+                            <th>Shift</th>
                             <th>Sampel Ke-</th>
                             <th>Jam</th>
                             <th>TS</th>
@@ -41,7 +41,7 @@
                         while ($data = pg_fetch_assoc($query)) {
                         ?>
                             <tr>
-                                
+                                <td><?= $data['shift']?></td>
                                 <td><?= $data['sampel']?></td>
                                  <td><?= $data['waktu']?></td>
                                 <td><?= $data['ts']?></td>

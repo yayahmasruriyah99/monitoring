@@ -35,6 +35,10 @@ $detailPc= pg_fetch_assoc($queryPc);
                             <label for="tanggal">Tanggal :</label>
                             <input type="date" class="form-control" id="tanggal" name="tanggal" required value="<?=$detailPc['tanggal']?>" readonly>
                         </div>
+                        <div>
+                            <label for="waktu">Shift :</label>
+                            <input type="text" class="form-control" id="shift" name="shift" value="<?=$_SESSION['shift']?>" required readonly>
+                        </div>
                         <div class="mb-3">
                             <label for="waktu">Time :</label>
                             <input type="time" class="form-control" id="waktu" name="waktu" required>
@@ -146,12 +150,13 @@ $result = $_POST['result'];
 $tanggal = $_POST['tanggal'];
 $loop = $_POST['loop'];
 $line = $_POST['line'];
+$shift = $_POST['shift'];
 $submit = $_POST['submit'];
 
 if(isset($submit)){
     $queryInsert = pg_query($dbconn, "INSERT INTO public.tbl_sa_ts_detail(
-	sampel, seasoning_nacl, fg_nacl, sa, status, id_sa, waktu, standar, result, loop, tanggal, line, id)
-	VALUES ($sampel, $seasoning_nacl, $fg_nacl, $sa, '$status', $id_sa, '$waktu', '$standar', '$result', $loop, '$tanggal', '$line', DEFAULT)");
+	sampel, seasoning_nacl, fg_nacl, sa, status, id_sa, waktu, standar, result, loop, tanggal, line, id, shift)
+	VALUES ($sampel, $seasoning_nacl, $fg_nacl, $sa, '$status', $id_sa, '$waktu', '$standar', '$result', $loop, '$tanggal', '$line', DEFAULT, '$shift')");
     
     if($queryInsert){
         session_start();

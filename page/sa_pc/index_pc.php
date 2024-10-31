@@ -74,7 +74,6 @@
                         <tr>
                             <th>No</th>
                             <th>Tanggal</th>
-                            <th>Shift</th>
                             <th>Nama Produk</th>
                             <th>Seasoning</th>
                             <th>Line</th>
@@ -111,7 +110,7 @@
 
                         }else{
                             // $query = "SELECT tbl_sa_pc.*, tbl_loop.* FROM tbl_sa_pc, tbl_loop WHERE tanggal='$tanggal_sekarang' AND shift='$shift_sekarang'";
-                            $query = "SELECT tbl_sa_pc.*, tbl_loop.bagian FROM tbl_sa_pc, tbl_loop WHERE tbl_sa_pc.loop=tbl_loop.loop AND tbl_sa_pc.tanggal='$tanggal_sekarang' AND tbl_sa_pc.shift='$shift_sekarang'";
+                            $query = "SELECT tbl_sa_pc.*, tbl_loop.bagian FROM tbl_sa_pc, tbl_loop WHERE tbl_sa_pc.loop=tbl_loop.loop AND tbl_sa_pc.tanggal='$tanggal_sekarang'";
                             $result = pg_query($dbconn, $query);
                         }
                         
@@ -122,7 +121,6 @@
                             <tr>
                                 <td><?= $no++ ?></td>
                                 <td><?= $data['tanggal'] ?></td>
-                                <td><?= $data['shift']?></td>
                                 <td><?= $data['nama_produk'] ?></td>
                                 <td><?= $data['seasoning'] ?></td>
                                 <td><?= $data['line'] ?></td>

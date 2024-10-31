@@ -25,6 +25,10 @@ $time_value = !empty($select['waktu']) ? date('H:i', strtotime($select['waktu'])
                             <label for="tanggal">Tanggal :</label>
                             <input type="date" class="form-control" id="tanggal" name="tanggal" required value="<?=$select['tanggal']?>" readonly>
                         </div>
+                        <div>
+                            <label for="waktu">Shift :</label>
+                            <input type="text" class="form-control" id="shift" name="shift" value="<?=$select['shift']?>" required readonly>
+                        </div>
                         <div class="mb-3">
                             <label for="waktu">Time :</label>
                             <input type="time" class="form-control" id="waktu" name="waktu" value="<?=$time_value?>" required>
@@ -77,7 +81,7 @@ $time_value = !empty($select['waktu']) ? date('H:i', strtotime($select['waktu'])
                             <label for="cr">Coating Ratio (%) :</label>
                             <input type="text" step='any' class="form-control"  id="cr" name="cr" value="<?=$select['cr']?>" readonly required>
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3" hidden>
                             <label for="standar">Standard PQS / PLS  :</label>
                             <input type="text" step='any' class="form-control" id="standar" name="standar" value="<?= $select['standar']?>" readonly required >
                         </div>
@@ -169,11 +173,12 @@ $result = $_POST['result'];
 $tanggal = $_POST['tanggal'];
 $loop = $_POST['loop'];
 $line = $_POST['line'];
+$shift = $_POST['shift'];
 $submit = $_POST['submit'];
 
 if(isset($submit)){
     $queryUpdate = pg_query($dbconn, "UPDATE tbl_cr_tws_detail
-	SET sampel=$sampel, ts=$ts, seasoning_nacl=$seasoning_nacl, base_nacl=$base_nacl, fg_nacl=$fg_nacl, nacl=$nacl, cr=$cr, status='$status', id_sa=$id_sa, waktu='$waktu', standar='$standar', result='$result', loop=$loop, tanggal='$tanggal', line='$line'
+	SET sampel=$sampel, ts=$ts, seasoning_nacl=$seasoning_nacl, base_nacl=$base_nacl, fg_nacl=$fg_nacl, nacl=$nacl, cr=$cr, status='$status', id_sa=$id_sa, waktu='$waktu', standar='$standar', result='$result', loop=$loop, tanggal='$tanggal', line='$line', shift='$shift'
 	WHERE id=$id;");
     
     if($queryUpdate){

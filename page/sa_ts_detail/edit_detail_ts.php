@@ -23,6 +23,10 @@ $select = pg_fetch_assoc($querySelect);
                             <label for="tanggal">Tanggal :</label>
                             <input type="date" class="form-control" id="tanggal" name="tanggal" required value="<?=$select['tanggal']?>">
                         </div>
+                        <div>
+                            <label for="waktu">Shift :</label>
+                            <input type="text" class="form-control" id="shift" name="shift" value="<?=$select['shift']?>" required readonly>
+                        </div>
                         <div class="mb-3">
                             <label for="waktu">Time :</label>
                             <input type="time" class="form-control" id="waktu" name="waktu" required value="<?=$select['waktu']?>">
@@ -142,11 +146,12 @@ $tanggal = $_POST['tanggal'];
 $loop = $_POST['loop'];
 $line = $_POST['line'];
 $result = $_POST['result'];
+$shift = $_POST['shift'];
 $submit = $_POST['submit'];
 
 if(isset($submit)){
     $queryInsert = pg_query($dbconn, "UPDATE tbl_sa_ts_detail
-	SET sampel=$sampel, seasoning_nacl=$seasoning_nacl, fg_nacl=$fg_nacl, sa=$sa, status='$status',  id_sa=$id_sa, waktu='$waktu', standar='$standar', result='$result', loop='$loop', tanggal='$tanggal', line='$line'
+	SET sampel=$sampel, seasoning_nacl=$seasoning_nacl, fg_nacl=$fg_nacl, sa=$sa, status='$status',  id_sa=$id_sa, waktu='$waktu', standar='$standar', result='$result', loop='$loop', tanggal='$tanggal', line='$line', shift='$shift'
 	WHERE id=$id;");
     
     if($queryInsert){

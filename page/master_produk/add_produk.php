@@ -37,9 +37,14 @@
                             <label for="size">Size :</label>
                             <input type="text" class="form-control" id="size" name="size" oninput="concatenate()" required>
                         </div>
+
                         <div class="mb-3">
                             <label for="seasoning">Seasoning :</label>
                             <input type="text" class="form-control" name="seasoning" id="seasoning" readonly required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="slury">Seasoning in Total Slury :</label>
+                            <input type="text" class="form-control" id="slury" name="slury" required>
                         </div>
                         
                         
@@ -51,7 +56,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="green_min">Standar Green Min :</label>
-                            <input type="number" step='any' class="form-control" id="green_min" name="green_min"  required>
+                            <input type="number" step='any' class="form-control" id="green_min" name="green_min" required>
                         </div>
                         <div class="mb-3">
                             <label for="green_max">Standar Green Max :</label>
@@ -67,7 +72,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="standar">Standar PQS :</label>
-                            <input type="text" class="form-control" id="standar" name="standar" readonly oninput="standars()" required/>
+                            <input type="text" class="form-control" id="standar" name="standar" readonly required oninput="standars()"/>
                         </div>
 
                             <div class="d-flex justify-content-end">
@@ -190,17 +195,18 @@ $brand = $_POST['brand'];
 $rasa = $_POST['rasa'];
 $size = $_POST['size'];
 $tanggal = $_POST['tanggal'];
-echo $seasoning = $_POST['seasoning'];
+$seasoning = $_POST['seasoning'];
 $nama_produk = $_POST['nama_produk'];
 $standar = $_POST['standar'];
 $yellow_min = $_POST['yellow_min'];
 $yellow_max = $_POST['yellow_max'];
 $green_min = $_POST['green_min'];
 $green_max = $_POST['green_max'];
+$slury  = $_POST['slury'];
 $submit = $_POST['submit'];
 
 if(isset($submit)){
-    $queryInsert = pg_query($dbconn, "INSERT INTO tbl_produk(kode, brand, rasa, size, tanggal, seasoning, nama_produk, standar, green_min, green_max, yellow_min, yellow_max) VALUES ('$kode', '$brand', '$rasa', '$size', '$tanggal', '$seasoning', '$nama_produk', '$standar', $green_min, $green_max, $yellow_min, $yellow_max)");
+    $queryInsert = pg_query($dbconn, "INSERT INTO tbl_produk(kode, brand, rasa, size, tanggal, seasoning, nama_produk, standar, green_min, green_max, yellow_min, yellow_max, slury) VALUES ('$kode', '$brand', '$rasa', '$size', '$tanggal', '$seasoning', '$nama_produk', '$standar', $green_min, $green_max, $yellow_min, $yellow_max, $slury)");
 
     if($queryInsert){
 ?>

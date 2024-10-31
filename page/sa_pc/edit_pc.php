@@ -21,10 +21,6 @@ $data = pg_fetch_assoc($querySelect);
                             <input type="date" class="form-control" id="tanggal" name="tanggal" required value="<?=$data['tanggal']?>">
                         </div>
                         <div class="mb-3">
-                            <label for="shift">Shift :</label>
-                            <input type="number" class="form-control" id="shift" name="shift" required value="<?= $data['shift']?>">
-                        </div>
-                        <div class="mb-3">
                             <label for="regu">Regu :</label>
                             <input type="text" class="form-control" id="regu" name="regu" required value="<?= $data['regu']?>">
                         </div>
@@ -36,8 +32,8 @@ $data = pg_fetch_assoc($querySelect);
                                 <option <?php if ($data['line'] == 'PC14'){echo "selected";}?> value="PC14">PC14</option>
                                 <option <?php if ($data['line'] == 'Cassava'){echo "selected";}?> value="Cassava">Cassava</option>
                                 <option <?php if ($data['line'] == 'TS'){echo "selected";}?> value="TS">TS</option>
-                                <option <?php if ($data['line'] == 'TWS.5.6'){echo "selected";}?> value="TWS">TWS 5.6</option>
-                                <option <?php if ($data['line'] == 'TWS.7.2'){echo "selected";}?> value="TWS">TWS 7.2</option>
+                                <option <?php if ($data['line'] == 'TWS.5.6'){echo "selected";}?> value="TWS.5.6">TWS 5.6</option>
+                                <option <?php if ($data['line'] == 'TWS.7.2'){echo "selected";}?> value="TWS.7.2">TWS 7.2</option>
                                 <option <?php if ($data['line'] == 'FCP'){echo "selected";}?> value="FCP">FCP</option>
                             </select>
                         </div>
@@ -51,12 +47,6 @@ $data = pg_fetch_assoc($querySelect);
                                 <option value="<?=$data['loop']?>"><?=$data['loop']."-".$data['line']."-".$data['bagian']?></option>  
                             </select>
                         </div>
-                        
-                        
-                        
-                        
-                    </div>
-                    <div class="col-md-6">
                         <div class="mb-3">
                             <label for="nama_produk">Nama Produk :</label>
                             <div class="d-flex align-items-center">
@@ -68,6 +58,13 @@ $data = pg_fetch_assoc($querySelect);
                             </div>  
                             </div>
                         </div>
+                        
+                        
+                        
+                        
+                    </div>
+                    <div class="col-md-6">
+                        
                         <div class="mb-3">
                             <label for="kode">Kode Etiket :</label>
                             <input type="number" class="form-control" name="kode" id="kode" readonly required value="<?= $data['kode']?>">
@@ -216,7 +213,6 @@ $data = pg_fetch_assoc($querySelect);
 <?php
 
 $tanggal = $_POST['tanggal'];
-$shift = $_POST['shift'];
 $regu = $_POST['regu'];
 $line = $_POST['line'];
 $nama_produk = $_POST['nama_produk'];
@@ -239,7 +235,6 @@ if(isset($submit)){
         seasoning='$seasoning', 
         analis='$analis', 
         field='$field', 
-        shift=$shift, 
         regu='$regu', 
         rasa='$rasa', 
         line='$line', 

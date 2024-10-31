@@ -38,6 +38,10 @@ $detailPc= pg_fetch_assoc($queryPc);
                             <label for="tanggal">Tanggal :</label>
                             <input type="date" class="form-control" id="tanggal" name="tanggal" required value="<?=$detailPc['tanggal']?>" readonly>
                         </div>
+                        <div>
+                            <label for="waktu">Shift :</label>
+                            <input type="text" class="form-control" id="shift" name="shift" value="<?=$_SESSION['shift']?>" required readonly>
+                        </div>
                         <div class="mb-3">
                             <label for="waktu">Time :</label>
                             <input type="time" class="form-control" id="waktu" name="waktu" required>
@@ -57,19 +61,18 @@ $detailPc= pg_fetch_assoc($queryPc);
                         </div>
                         <div class="mb-3">
                             <label for="ts">Seasoning in Total Slurry :</label>
-                            <input type="number" class="form-control" id="ts" name="ts" value="<?php echo $lastTs?>" step="any" oninput="calculate()" required>
+                            <input type="number" class="form-control" id="ts" name="ts" value="<?= $data['slury'] ?>" step="any" oninput="calculate()" required>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="seasoning_nacl">Seasoning Nacl :</label>
-                            <input type="number" value="<?php echo $lastNacl?>" step='any' class="form-control" id="seasoning_nacl" name="seasoning_nacl" oninput="calculate()" required>
-                        </div>
+                        
                         
                         
                     </div>
                     <div class="col-md-6">
-                        
-                        
+                        <div class="mb-3">
+                            <label for="seasoning_nacl">Seasoning Nacl :</label>
+                            <input type="number" value="<?php echo $lastNacl?>" step='any' class="form-control" id="seasoning_nacl" name="seasoning_nacl" oninput="calculate()" required>
+                        </div>
                         <div class="mb-3">
                             <label for="nacl">Nacl (%) :</label>
                             <input type="number" step='any' class="form-control"  id="nacl" name="nacl" oninput="calculate()" required>
@@ -78,7 +81,7 @@ $detailPc= pg_fetch_assoc($queryPc);
                             <label for="cr">Coating Ratio (%) :</label>
                             <input type="number" step='any' class="form-control"  id="cr" name="cr" readonly required>
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3" hidden>
                             <label for="standar">Standard PQS / PLS  :</label>
                             <input type="text" step='any' class="form-control" id="standar" name="standar" value="<?= $data['standar']?>" readonly required >
                         </div>
@@ -155,12 +158,13 @@ $result = $_POST['result'];
 $tanggal = $_POST['tanggal'];
 $loop = $_POST['loop'];
 $line = $_POST['line'];
+$shift = $_POST['shift'];
 $submit = $_POST['submit'];
 
 if(isset($submit)){
     $queryInsert = pg_query($dbconn, "INSERT INTO tbl_cr_fcp_detail(
-	sampel, ts, seasoning_nacl, nacl, cr, status, id, id_sa, waktu, standar, result, loop, tanggal, line)
-	VALUES ($sampel, $ts, $seasoning_nacl, $nacl, $cr, '$status', DEFAULT, $id_sa, '$waktu', '$standar', '$result', $loop, '$tanggal', '$line')");
+	sampel, ts, seasoning_nacl, nacl, cr, status, id, id_sa, waktu, standar, result, loop, tanggal, line, shift)
+	VALUES ($sampel, $ts, $seasoning_nacl, $nacl, $cr, '$status', DEFAULT, $id_sa, '$waktu', '$standar', '$result', $loop, '$tanggal', '$line', '$shift')");
     
     if($queryInsert){
         session_start();

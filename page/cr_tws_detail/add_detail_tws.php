@@ -37,6 +37,10 @@ $detailPc= pg_fetch_assoc($queryPc);
                             <label for="tanggal">Tanggal :</label>
                             <input type="date" class="form-control" id="tanggal" name="tanggal" required value="<?=$detailPc['tanggal']?>" readonly>
                         </div>
+                        <div>
+                            <label for="waktu">Shift :</label>
+                            <input type="text" class="form-control" id="shift" name="shift" value="<?=$_SESSION['shift']?>" required readonly>
+                        </div>
                         <div class="mb-3">
                             <label for="waktu">Time :</label>
                             <input type="time" class="form-control" id="waktu" name="waktu" required>
@@ -56,7 +60,7 @@ $detailPc= pg_fetch_assoc($queryPc);
                         </div>
                         <div class="mb-3">
                             <label for="ts">Seasoning in Total Slurry :</label>
-                            <input type="number" class="form-control" id="ts" name="ts"  step="any" value="<?= $lastTs?>" oninput="calculate()" required>
+                            <input type="number" class="form-control" id="ts" name="ts"  step="any" value="<?= $data['slury']?>" oninput="calculate()" required>
                         </div>
 
                         <div class="mb-3">
@@ -168,12 +172,13 @@ $result = $_POST['result'];
 $tanggal = $_POST['tanggal'];
 $loop = $_POST['loop'];
 $line = $_POST['line'];
+$shift = $_POST['shift'];
 $submit = $_POST['submit'];
 
 if(isset($submit)){
     $queryInsert = pg_query($dbconn, "INSERT INTO tbl_cr_tws_detail(
-	sampel, ts, seasoning_nacl, base_nacl, fg_nacl, nacl, cr, status, id, id_sa, waktu, standar, result, loop, tanggal, line)
-	VALUES ($sampel, $ts, $seasoning_nacl, $base_nacl, $fg_nacl, $nacl, $cr, '$status', DEFAULT, $id_sa, '$waktu', '$standar', '$result', $loop, '$tanggal', '$line')");
+	sampel, ts, seasoning_nacl, base_nacl, fg_nacl, nacl, cr, status, id, id_sa, waktu, standar, result, loop, tanggal, line, shift)
+	VALUES ($sampel, $ts, $seasoning_nacl, $base_nacl, $fg_nacl, $nacl, $cr, '$status', DEFAULT, $id_sa, '$waktu', '$standar', '$result', $loop, '$tanggal', '$line', '$shift')");
     
     if($queryInsert){
         session_start();
