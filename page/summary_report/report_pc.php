@@ -38,7 +38,7 @@
                         $shift  = $_GET['shift'];
                         $line   = $_GET['line'];
                         
-                        $query = "SELECT tbl_sa_pc_detail.*, tbl_sa_pc.shift, tbl_sa_pc.nama_produk, tbl_sa_pc.analis, tbl_sa_pc.field, tbl_loop.bagian
+                        $query = "SELECT tbl_sa_pc_detail.*, tbl_sa_pc.nama_produk, tbl_sa_pc.analis, tbl_sa_pc.field, tbl_loop.bagian
                                 FROM tbl_sa_pc, tbl_sa_pc_detail, tbl_loop
                                 WHERE tbl_sa_pc_detail.line='$line' 
                                 AND tbl_sa_pc_detail.tanggal >= '$tanggal_start' 
@@ -47,7 +47,7 @@
                             
                         // Tambahkan filter shift jika tidak 'all'
                         if ($shift !== "all") {
-                            $query .= " AND tbl_sa_pc.shift ='$shift'";
+                            $query .= " AND tbl_sa_pc_detail.shift ='$shift'";
                             
                         }
                             $result = pg_query($dbconn, $query);

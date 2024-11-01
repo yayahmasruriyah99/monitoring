@@ -11,10 +11,11 @@ session_start();
 $tanggal_sekarang = date('Y-m-d');
 $shift = $_SESSION['shift'];
 
-$queryLastNacl = pg_query($dbconn,"SELECT tbl_sa_pc.*, tbl_sa_pc_detail.* FROM tbl_sa_pc, tbl_sa_pc_detail WHERE tbl_sa_pc.id=tbl_sa_pc_detail.id_sa AND tbl_sa_pc.tanggal='$tanggal_sekarang' AND tbl_sa_pc.shift='$shift' AND tbl_sa_pc.loop='$loop' ORDER BY tbl_sa_pc_detail.sampel DESC");
+$queryLastNacl = pg_query($dbconn,"SELECT tbl_sa_pc.*, tbl_sa_pc_detail.* FROM tbl_sa_pc, tbl_sa_pc_detail WHERE tbl_sa_pc.id=tbl_sa_pc_detail.id_sa AND tbl_sa_pc.tanggal='$tanggal_sekarang' AND tbl_sa_pc_detail.shift='$shift' AND tbl_sa_pc.loop='$loop' ORDER BY tbl_sa_pc_detail.sampel DESC");
 
 $dataLastNacl = pg_fetch_assoc($queryLastNacl);
 $lastNacl = $dataLastNacl['seasoning_nacl']; 
+$lastBaseNacl = $dataLastNacl['base_nacl'];
 //echo $lastNacl;
 
 
@@ -64,7 +65,7 @@ $detailPc= pg_fetch_assoc($queryPc);
                         </div>
                         <div class="mb-3">
                             <label for="base_nacl">Base Nacl :</label>
-                            <input type="number" step='any' class="form-control" id="base_nacl" name="base_nacl" oninput="calculate()" required>
+                            <input type="number" step='any' value="<?= $lastBaseNacl?>" class="form-control" id="base_nacl" name="base_nacl" oninput="calculate()" required>
                         </div>
                         
                         

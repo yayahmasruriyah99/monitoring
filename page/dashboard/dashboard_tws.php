@@ -194,7 +194,7 @@
                         if(isset($_POST['cari'])){
                             
 
-                            if (!empty($loop) && !empty($tanggal) && !empty($shift)) {
+                            if (!empty($loop) && !empty($tanggal)) {
                              $query = pg_query($dbconn, "SELECT tbl_cr_tws_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max FROM tbl_cr_tws_detail, tbl_sa_pc, tbl_produk WHERE tbl_cr_tws_detail.loop='$loop' AND tbl_produk.kode=tbl_sa_pc.kode  AND tbl_sa_pc.id=tbl_cr_tws_detail.id_sa AND tbl_cr_tws_detail.tanggal='$tanggal'");
                             }
                         }else if(empty($loop)){
@@ -209,7 +209,7 @@
                                     WHERE tbl_produk.kode = tbl_sa_pc.kode 
                                     AND tbl_cr_tws_detail.loop = '$loop' 
                                     AND tbl_sa_pc.id = tbl_cr_tws_detail.id_sa 
-                                    AND tbl_cr_tws_detail.tanggal = '$tanggal_sekarang'");
+                                    AND tbl_cr_tws_detail.tanggal = '$tanggal'");
                             }
                         } 
                         $total_sa = 0; // Inisialisasi total_sa di luar loop

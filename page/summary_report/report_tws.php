@@ -36,11 +36,10 @@
                         $tanggal_start = $_GET['tanggal_start'];
                         $tanggal_end = $_GET['tanggal_end'];
                         $shift  = $_GET['shift'];
-                        $line   = $_GET['line'];
                         
-                        $query = "SELECT tbl_cr_tws_detail.*, tbl_sa_pc.shift, tbl_sa_pc.nama_produk, tbl_sa_pc.analis, tbl_sa_pc.field tbl_loop.loop FROM tbl_cr_tws_detail, tbl_sa_pc, tbl_loop WHERE tbl_sa_pc.loop=tbl_loop.loop AND tbl_cr_tws_detail.line='$line' AND tbl_cr_tws_detail.tanggal >='$tanggal_start' AND  tbl_cr_tws_detail.tanggal <='$tanggal_end' AND tbl_sa_pc.id=tbl_cr_tws_detail.id_sa "  ;
+                        $query = "SELECT tbl_cr_tws_detail.*, tbl_cr_tws_detail.shift, tbl_sa_pc.nama_produk, tbl_sa_pc.analis, tbl_sa_pc.field, tbl_loop.bagian FROM tbl_cr_tws_detail, tbl_sa_pc, tbl_loop WHERE tbl_cr_tws_detail.tanggal >='$tanggal_start' AND tbl_cr_tws_detail.tanggal <='$tanggal_end' AND tbl_sa_pc.id=tbl_cr_tws_detail.id_sa AND tbl_sa_pc.loop=tbl_loop.loop";
                         if ($shift !== "all") {
-                            $query .= " AND tbl_sa_pc.shift ='$shift'";
+                            $query .= " AND tbl_cr_tws_detail.shift ='$shift'";
                         }
                         $result = pg_query($dbconn, $query);
 
