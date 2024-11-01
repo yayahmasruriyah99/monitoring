@@ -44,7 +44,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="slury">Seasoning in Total Slury :</label>
-                            <input type="text" class="form-control" id="slury" name="slury" required>
+                            <input type="number" step='any' class="form-control" id="slury" name="slury" required>
                         </div>
                         
                         

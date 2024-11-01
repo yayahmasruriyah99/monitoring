@@ -52,7 +52,7 @@ $data = pg_fetch_assoc($querySelect);
                         </div>
                         <div class="mb-3">
                             <label for="slury">Seasoning in Total Slury :</label>
-                            <input type="number" class="form-control" id="slury" name="slury" required value="<?=$data['slury']?>">
+                            <input ttype="number" step='any' class="form-control" id="slury" name="slury" required value="<?=$data['slury']?>">
                         </div>
                         
                         
