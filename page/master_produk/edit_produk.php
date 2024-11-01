@@ -186,11 +186,12 @@ $yellow_min = $_POST['yellow_min'];
 $yellow_max = $_POST['yellow_max'];
 $green_min = $_POST['green_min'];
 $green_max = $_POST['green_max'];
+$slury = $_POST['slury'];
 $submit = $_POST['submit'];
 
 if(isset($submit)){
     $queryUpdate = pg_query($dbconn, "UPDATE tbl_produk
-	SET kode='$kode', brand='$brand', rasa='$rasa', size='$size', tanggal='$tanggal', seasoning='$seasoning', nama_produk='$nama_produk', standar='$standar', green_min='$green_min', green_max='$green_max', yellow_min='$yellow_min', yellow_max='$yellow_max' WHERE kode=$id");
+	SET kode='$kode', brand='$brand', rasa='$rasa', size='$size', tanggal='$tanggal', seasoning='$seasoning', nama_produk='$nama_produk', standar='$standar', green_min='$green_min', green_max='$green_max', yellow_min='$yellow_min', yellow_max='$yellow_max', slury='$slury' WHERE kode=$id");
 
 
     if($queryUpdate){
