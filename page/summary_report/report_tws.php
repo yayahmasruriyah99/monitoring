@@ -42,6 +42,7 @@
                         if ($shift !== "all") {
                             $query .= " AND tbl_cr_tws_detail.shift ='$shift'";
                         }
+                         $query .= " ORDER BY tbl_cr_tws_detail.sampel ASC";
                         $result = pg_query($dbconn, $query);
 
                         $no=0;

@@ -43,6 +43,7 @@
                                 <option value="TWS.5.6">TWS 5.6</option>
                                 <option value="TWS.7.2">TWS 7.2</option>
                                 <option value="FCP">FCP</option>
+                                <option value="all">All</option>
                             </select>
                         </div>
                         <div class="col-md-3 mb-3">
@@ -105,11 +106,17 @@
                              if ($line !== 'all' && !empty($line)) {
                                 $query .= " AND tbl_sa_pc.line='$line'";
                             }
+                            
+                            $query .= " ORDER BY tbl_sa_pc.loop ASC";
+
                             $result = pg_query($dbconn, $query);
 
                         }else{
                             // $query = "SELECT tbl_sa_pc.*, tbl_loop.* FROM tbl_sa_pc, tbl_loop WHERE tanggal='$tanggal_sekarang' AND shift='$shift_sekarang'";
                             $query = "SELECT tbl_sa_pc.*, tbl_loop.bagian FROM tbl_sa_pc, tbl_loop WHERE tbl_sa_pc.loop=tbl_loop.loop AND tbl_sa_pc.tanggal='$tanggal_sekarang'";
+                            
+                            $query .= " ORDER BY tbl_sa_pc.loop ASC";
+
                             $result = pg_query($dbconn, $query);
                         }
                         

@@ -51,6 +51,8 @@
                             $query .= " AND tbl_sa_pc_detail.shift ='$shift'";
                             
                         }
+                        $query .= " ORDER BY tbl_sa_pc_detail.sampel ASC";
+                        
                             $result = pg_query($dbconn, $query);
 
                         

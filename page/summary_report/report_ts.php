@@ -42,6 +42,7 @@
                         if ($shift !== "all") {
                             $query .= " AND tbl_sa_ts_detail.shift ='$shift'";
                         }
+                         $query .= " ORDER BY tbl_sa_ts_detail.sampel ASC";
 
                         $result = pg_query($dbconn, $query);
 
