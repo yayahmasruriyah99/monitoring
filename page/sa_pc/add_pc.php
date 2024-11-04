@@ -11,10 +11,6 @@
                             <input type="date" class="form-control" id="tanggal" name="tanggal" required>
                         </div>
                         <div class="mb-3">
-                            <label for="regu">Regu :</label>
-                            <input type="text" class="form-control" id="regu" name="regu" required readonly value="<?=$_SESSION['regu']?>">
-                        </div>
-                        <div class="mb-3">
                             <label for="line">Line :</label>
                             <select name="line" id="line" class="form-control" required>
                                 <option value="">- Open this Select Menu -</option>
@@ -26,10 +22,6 @@
                                 <option value="TWS.7.2">TWS 7.2</option>
                                 <option value="FCP">FCP</option>
                             </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="field">QC Field :</label>
-                            <input type="text" class="form-control" id="field" name="field" required>
                         </div>
                         <div class="mb-3">
                             <label for="loop">Loop :</label>
@@ -76,10 +68,6 @@
                         <div class="mb-3">
                             <label for="seasoning">Kode Seasoning :</label>
                             <input type="text" class="form-control" id="seasoning" name="seasoning" required readonly>
-                        </div>
-                        <div class="mb-3">
-                            <label for="analis">Analis :</label>
-                            <input type="text" class="form-control" id="analis" name="analis" value="<?=$_SESSION['nama']?>" required readonly>
                         </div>
                             <div class="d-flex justify-content-end">
                                 <button name="submit" type="submit" class="btn btn-primary" onclick="return validateForm()">Submit</button>

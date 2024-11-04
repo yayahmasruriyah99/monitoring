@@ -12,12 +12,15 @@ session_start();
 $tanggal_sekarang = date('Y-m-d');
 $shift = $_SESSION['shift'];
 //ambil seasoning nacl 
-$queryLastNacl = pg_query($dbconn,"SELECT tbl_sa_pc.*, tbl_cr_fcp_detail.* FROM tbl_sa_pc, tbl_cr_fcp_detail WHERE tbl_sa_pc.id=tbl_cr_fcp_detail.id_sa AND tbl_sa_pc.tanggal='$tanggal_sekarang' AND tbl_sa_pc.shift='$shift'AND tbl_sa_pc.loop='$loop' ORDER BY tbl_cr_fcp_detail.sampel DESC");
+// $queryLastNacl = pg_query($dbconn,"SELECT tbl_sa_pc.*, tbl_cr_fcp_detail.* FROM tbl_sa_pc, tbl_cr_fcp_detail WHERE id_sa=$id_sa AND tbl_cr_fcp_detail.tanggal=tbl_sa_pc.tanggal AND tbl_sa_pc.shift='$shift'AND tbl_sa_pc.loop='$loop' ORDER BY tbl_cr_fcp_detail.sampel DESC");
+
+$queryLastNacl = pg_query($dbconn, "SELECT * FROM tbl_cr_fcp_detail WHERE id_sa=$id_sa ORDER BY  id DESC");
 
  
 $dataLastNacl = pg_fetch_assoc($queryLastNacl);
 $lastNacl = $dataLastNacl['seasoning_nacl']; 
 $lastTs = $dataLastNacl['ts'];
+$lastqcField = $dataLastNacl['field'];
 //echo $lastNacl;
 
 $querySelect = pg_query($dbconn, "SELECT * FROM tbl_produk WHERE kode=$id_produk");
@@ -34,13 +37,25 @@ $detailPc= pg_fetch_assoc($queryPc);
             <form method="post">
                 <div class="row">
                     <div class="col-md-6">
+                        <div class="mb-3" hidden>
+                            <label for="regu">Regu :</label>
+                            <input type="text" class="form-control" id="regu" name="regu" value="<?=$_SESSION['regu']?>" required readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="analis">Analis :</label>
+                            <input type="text" class="form-control" id="analis" name="analis" value="<?=$_SESSION['nama']?>" required readonly>
+                        </div>
                         <div class="mb-3">
                             <label for="tanggal">Tanggal :</label>
                             <input type="date" class="form-control" id="tanggal" name="tanggal" required value="<?=$detailPc['tanggal']?>" readonly>
                         </div>
                         <div>
                             <label for="waktu">Shift :</label>
-                            <input type="text" class="form-control" id="shift" name="shift" value="<?=$_SESSION['shift']?>" required readonly>
+                            <input type="text" class="form-control" id="shift" name="shift" value="<?=$_SESSION['shift']?>" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="field">QC Field :</label>
+                            <input type="text" value="<?php echo $lastqcField?>" class="form-control" id="field" name="field" required>
                         </div>
                         <div class="mb-3">
                             <label for="waktu">Time :</label>
@@ -159,12 +174,15 @@ $tanggal = $_POST['tanggal'];
 $loop = $_POST['loop'];
 $line = $_POST['line'];
 $shift = $_POST['shift'];
+$analis = $_POST['analis'];
+$field = $_POST['field'];
+$regu = $_POST['regu'];
 $submit = $_POST['submit'];
 
 if(isset($submit)){
     $queryInsert = pg_query($dbconn, "INSERT INTO tbl_cr_fcp_detail(
-	sampel, ts, seasoning_nacl, nacl, cr, status, id, id_sa, waktu, standar, result, loop, tanggal, line, shift)
-	VALUES ($sampel, $ts, $seasoning_nacl, $nacl, $cr, '$status', DEFAULT, $id_sa, '$waktu', '$standar', '$result', $loop, '$tanggal', '$line', '$shift')");
+	sampel, ts, seasoning_nacl, nacl, cr, status, id, id_sa, waktu, standar, result, loop, tanggal, line, shift, analis, field, regu)
+	VALUES ($sampel, $ts, $seasoning_nacl, $nacl, $cr, '$status', DEFAULT, $id_sa, '$waktu', '$standar', '$result', $loop, '$tanggal', '$line', '$shift', '$analis', '$field', '$regu')");
     
     if($queryInsert){
         session_start();

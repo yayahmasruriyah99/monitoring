@@ -22,12 +22,20 @@ $time_value = !empty($select['waktu']) ? date('H:i', strtotime($select['waktu'])
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3">
+                            <label for="analis">Analis :</label>
+                            <input type="text" class="form-control" id="analis" name="analis" value="<?=$select['analis']?>" required readonly>
+                        </div>
+                        <div class="mb-3">
                             <label for="tanggal">Tanggal :</label>
                             <input type="date" class="form-control" id="tanggal" name="tanggal" required value="<?=$select['tanggal']?>" readonly>
                         </div>
-                        <div>
+                        <div class="mb-3">
                             <label for="waktu">Shift :</label>
                             <input type="text" class="form-control" id="shift" name="shift" value="<?=$select['shift']?>" required readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="field">QC Field :</label>
+                            <input type="text" class="form-control" id="field" name="field" value="<?=$select['field']?>" required>
                         </div>
                         <div class="mb-3">
                             <label for="waktu">Time :</label>
@@ -50,20 +58,20 @@ $time_value = !empty($select['waktu']) ? date('H:i', strtotime($select['waktu'])
                             <label for="ts">Seasoning in Total Slurry :</label>
                             <input type="number" step='any' class="form-control" id="ts" name="ts" value="<?= $select['ts']?>" oninput="calculate()" required>
                         </div>
-
-                        <div class="mb-3">
-                            <label for="seasoning_nacl">Seasoning Nacl :</label>
-                            <input type="number" value="<?php echo $select['seasoning_nacl']?>" step='any' class="form-control" id="seasoning_nacl" name="seasoning_nacl" oninput="calculate()" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="base_nacl">Base Nacl :</label>
-                            <input type="number" step='any'  class="form-control" id="base_nacl" name="base_nacl" value="<?=$select['base_nacl']?>" oninput="calculate()" required>
-                        </div>
+                        
                         
                         
                     </div>
                     <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="seasoning_nacl">Seasoning Nacl :</label>
+                            <input type="number" value="<?php echo $select['seasoning_nacl']?>" step='any' class="form-control" id="seasoning_nacl" name="seasoning_nacl" oninput="calculate()" required>
+                        </div>
                         
+                        <div class="mb-3">
+                            <label for="base_nacl">Base Nacl :</label>
+                            <input type="number" step='any'  class="form-control" id="base_nacl" name="base_nacl" value="<?=$select['base_nacl']?>" oninput="calculate()" required>
+                        </div>
                         <div class="mb-3" hidden>
                             <label for="id_sa">ID SA :</label>
                             <input type="number" step='any' class="form-control" id="id_sa" name="id_sa" value="<?=$select['id_sa']?>" required>
@@ -174,11 +182,13 @@ $tanggal = $_POST['tanggal'];
 $loop = $_POST['loop'];
 $line = $_POST['line'];
 $shift = $_POST['shift'];
+$field = $_POST['field'];
+$analis = $_POST['analis'];
 $submit = $_POST['submit'];
 
 if(isset($submit)){
     $queryUpdate = pg_query($dbconn, "UPDATE tbl_cr_tws_detail
-	SET sampel=$sampel, ts=$ts, seasoning_nacl=$seasoning_nacl, base_nacl=$base_nacl, fg_nacl=$fg_nacl, nacl=$nacl, cr=$cr, status='$status', id_sa=$id_sa, waktu='$waktu', standar='$standar', result='$result', loop=$loop, tanggal='$tanggal', line='$line', shift='$shift'
+	SET sampel=$sampel, ts=$ts, seasoning_nacl=$seasoning_nacl, base_nacl=$base_nacl, fg_nacl=$fg_nacl, nacl=$nacl, cr=$cr, status='$status', id_sa=$id_sa, waktu='$waktu', standar='$standar', result='$result', loop=$loop, tanggal='$tanggal', line='$line', shift='$shift', analis='$analis', field='$field'
 	WHERE id=$id;");
     
     if($queryUpdate){

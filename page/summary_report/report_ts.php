@@ -13,6 +13,7 @@
                     <thead>
                         <tr>
                             <th>Tanggal</th>
+                            <th>Regu</th>
                             <th>Shift</th>
                             <th>Loop</th>
                             <th>Bagian</th>
@@ -37,7 +38,7 @@
                         $shift  = $_GET['shift'];
                         $line   = $_GET['line'];
                         
-                        $query = "SELECT tbl_sa_ts_detail.*, tbl_sa_ts_detail.shift, tbl_sa_pc.nama_produk, tbl_sa_pc.analis, tbl_sa_pc.field, tbl_loop.bagian FROM tbl_sa_pc, tbl_sa_ts_detail, tbl_loop WHERE tbl_sa_ts_detail.line='$line' AND tbl_sa_ts_detail.tanggal >='$tanggal_start' AND tbl_sa_pc.loop=tbl_loop.loop AND tbl_sa_ts_detail.tanggal <='$tanggal_end' AND tbl_sa_pc.id=tbl_sa_ts_detail.id_sa";
+                        $query = "SELECT tbl_sa_ts_detail.*, tbl_sa_ts_detail.shift, tbl_sa_pc.nama_produk, tbl_sa_ts_detail.analis, tbl_sa_ts_detail.field, tbl_sa_ts_detail.regu, tbl_loop.bagian FROM tbl_sa_pc, tbl_sa_ts_detail, tbl_loop WHERE tbl_sa_ts_detail.line='$line' AND tbl_sa_ts_detail.tanggal >='$tanggal_start' AND tbl_sa_pc.loop=tbl_loop.loop AND tbl_sa_ts_detail.tanggal <='$tanggal_end' AND tbl_sa_pc.id=tbl_sa_ts_detail.id_sa";
                         if ($shift !== "all") {
                             $query .= " AND tbl_sa_ts_detail.shift ='$shift'";
                         }
@@ -50,6 +51,7 @@
                         ?>
                         <tr>
                             <td><?= $data['tanggal'] ?></td>
+                            <td><?= $data['regu'] ?></td>
                             <td><?= $data['shift'] ?></td>
                             <td><?= $data['loop'] ?></td>
                             <td><?= $data['bagian'] ?></td>

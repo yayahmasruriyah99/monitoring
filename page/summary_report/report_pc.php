@@ -13,6 +13,7 @@
                     <thead>
                         <tr>
                             <th>Tanggal</th>
+                            <th>Regu</th>
                             <th>Shift</th>
                             <th>Loop</th>
                             <th>Bagian</th>
@@ -38,7 +39,7 @@
                         $shift  = $_GET['shift'];
                         $line   = $_GET['line'];
                         
-                        $query = "SELECT tbl_sa_pc_detail.*, tbl_sa_pc.nama_produk, tbl_sa_pc.analis, tbl_sa_pc.field, tbl_loop.bagian
+                        $query = "SELECT tbl_sa_pc_detail.*, tbl_sa_pc.nama_produk, tbl_sa_pc_detail.analis, tbl_sa_pc_detail.field, tbl_sa_pc_detail.regu, tbl_loop.bagian
                                 FROM tbl_sa_pc, tbl_sa_pc_detail, tbl_loop
                                 WHERE tbl_sa_pc_detail.line='$line' 
                                 AND tbl_sa_pc_detail.tanggal >= '$tanggal_start' 
@@ -59,6 +60,7 @@
                         ?>
                         <tr>
                             <td><?= $data['tanggal'] ?></td>
+                            <td><?= $data['regu'] ?></td>
                             <td><?= $data['shift'] ?></td>
                             <td><?= $data['loop']?></td>
                             <td><?= $data['bagian']?></td>

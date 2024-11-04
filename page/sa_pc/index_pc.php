@@ -79,7 +79,6 @@
                             <th>Line</th>
                             <th>Loop</th>
                             <th>Bagian</th>
-                            <th>QC Field</th>
                             <th>Action</th>
 
                         </tr>
@@ -126,7 +125,6 @@
                                 <td><?= $data['line'] ?></td>
                                 <td><?= $data['loop'] ?></td>
                                 <td><?= $data['bagian']?></td>
-                                <td><?= $data['field']?></td>
                                 <td>
                                     <a href="
                                     <?php if($data['line'] == 'PC32' ||$data['line'] == 'PC14' ||$data['line'] == 'Cassava' ){?> 

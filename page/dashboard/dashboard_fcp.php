@@ -123,7 +123,7 @@
         <div class="col-md-2">
              <input type="date" class="form-control" id="tanggal" placeholder="Tanggal" name="tanggal" value="<?php echo isset($_POST['tanggal']) ? $_POST['tanggal'] : ''; ?>" required>
         </div>
-        <!-- <div class="col-md-1">
+        <div class="col-md-1">
             <label for="shift">Shift</label>
         </div>
         <div class="col-md-2 mb-3">
@@ -136,7 +136,7 @@
                     <option value="all" <?php echo isset($_POST['shift']) && $_POST['shift'] == 'all' ? 'selected' : ''; ?>>All</option>
                 </select>
             </div>
-        </div> -->
+        </div>
         <div class="col-md-3">
              <button type="submit" name="cari" id="btnCari" class="btn btn-warning">Cari</button>
         </div>
@@ -188,28 +188,38 @@
                         $shift = $_POST['shift'];
                         $tanggal_sekarang = date("Y-m-d");
                         $shift_sekarang = $_SESSION['shift'];
-
+                        
 
                         if(isset($_POST['cari'])){
-                             $query = pg_query($dbconn, "SELECT tbl_cr_fcp_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max FROM tbl_cr_fcp_detail, tbl_sa_pc, tbl_produk WHERE tbl_cr_fcp_detail.loop='$loop' AND tbl_produk.kode=tbl_sa_pc.kode AND tbl_sa_pc.id=tbl_cr_fcp_detail.id_sa AND tbl_cr_fcp_detail.tanggal='$tanggal' ");
-                        }else if(empty($loop)){
-                             $query = pg_query($dbconn, "SELECT tbl_cr_fcp_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max FROM tbl_cr_fcp_detail, tbl_sa_pc, tbl_produk WHERE tbl_cr_fcp_detail.loop=21 AND tbl_produk.kode=tbl_sa_pc.kode AND tbl_sa_pc.id=tbl_cr_fcp_detail.id_sa AND tbl_cr_fcp_detail.tanggal='$tanggal_sekarang'");
-                        }else{
-                            if($loop >= 18 && $loop <= 19){
-                                $query = pg_query($dbconn, "SELECT tbl_cr_fcp_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max  
-                                    FROM tbl_cr_fcp_detail, tbl_sa_pc, tbl_produk 
-                                    WHERE tbl_produk.kode = tbl_sa_pc.kode 
-                                    AND tbl_cr_fcp_detail.loop = '$loop' 
-                                    AND tbl_sa_pc.id = tbl_cr_fcp_detail.id_sa 
-                                    AND tbl_cr_fcp_detail.tanggal = '$tanggal_sekarang'");
+                            
+
+                            if (!empty($loop) && !empty($tanggal) && !empty($shift)) {
+                             $query = "SELECT tbl_cr_fcp_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max FROM tbl_cr_fcp_detail, tbl_sa_pc, tbl_produk WHERE tbl_cr_fcp_detail.loop='$loop' AND tbl_produk.kode=tbl_sa_pc.kode  AND tbl_sa_pc.id=tbl_cr_fcp_detail.id_sa AND tbl_cr_fcp_detail.tanggal='$tanggal'";
+
+                             if ($shift !== "all") {
+                                $query .= " AND tbl_cr_fcp_detail.shift = '$shift'";
                             }
-                        } 
+
+                            // Eksekusi query
+                            $result = pg_query($dbconn, $query);
+                            }
+                        }else if(empty($loop)){
+                            
+
+                            $query = "SELECT tbl_cr_fcp_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max FROM tbl_cr_fcp_detail, tbl_sa_pc, tbl_produk WHERE tbl_cr_fcp_detail.loop=21 AND tbl_produk.kode=tbl_sa_pc.kode  AND tbl_sa_pc.id=tbl_cr_fcp_detail.id_sa AND tbl_cr_fcp_detail.tanggal='$tanggal_sekarang' AND tbl_cr_fcp_detail.shift='$shift_sekarang'";
+                            
+
+
+                            // Eksekusi query
+                            $result = pg_query($dbconn, $query);
+
+                        }
                         $total_cr = 0; // Inisialisasi total_sa di luar loop
                         $total_nacl = 0; // Inisialisasi total_nacl di luar loop
                         $total_rows = 0;
                         
                         
-                        while ($data = pg_fetch_assoc($query)) {
+                        while ($data = pg_fetch_assoc($result)) {
                             //$data_sa[] = $data['sa'];
                             $data_cr[]          = (float) $data['cr'];
                             $data_yellow_min[]  = (float) $data['yellow_min'];

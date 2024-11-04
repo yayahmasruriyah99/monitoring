@@ -20,6 +20,10 @@ $select = pg_fetch_assoc($querySelect);
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3">
+                            <label for="analis">Analis :</label>
+                            <input type="text" class="form-control" id="analis" name="analis" required value="<?=$select['analis']?>" readonly>
+                        </div>
+                        <div class="mb-3">
                             <label for="tanggal">Tanggal :</label>
                             <input type="date" class="form-control" id="tanggal" name="tanggal" required value="<?=$select['tanggal']?>">
                         </div>
@@ -27,9 +31,13 @@ $select = pg_fetch_assoc($querySelect);
                             <label for="waktu">Time :</label>
                             <input type="time" class="form-control" id="waktu" name="waktu" required value="<?=$select['waktu']?>">
                         </div>
-                        <div>
+                        <div class="mb-3">
                             <label for="waktu">Shift :</label>
-                            <input type="text" class="form-control" id="shift" name="shift" value="<?=$select['shift']?>" required readonly>
+                            <input type="text" class="form-control" id="shift" name="shift" value="<?=$select['shift']?>" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="field">QC Field :</label>
+                            <input type="text" class="form-control" id="field" name="field" value="<?= $select['field']?>"  required>
                         </div>
                         <div class="mb-3">
                             <label for="line">Line :</label>
@@ -47,15 +55,16 @@ $select = pg_fetch_assoc($querySelect);
                             <label for="seasoning_nacl">Seasoning Nacl :</label>
                             <input type="number" step='any' class="form-control" id="seasoning_nacl" name="seasoning_nacl" value="<?=$select['seasoning_nacl']?>" oninput="calculate()" required>
                         </div>
-                        <div class="mb-3">
-                            <label for="base_nacl">Base Nacl :</label>
-                            <input type="number" step='any' class="form-control" id="base_nacl" name="base_nacl" value="<?=$select['base_nacl']?>" oninput="calculate()" required>
-                        </div>
                         
                         
                         
                     </div>
                     <div class="col-md-6">
+                        
+                        <div class="mb-3">
+                            <label for="base_nacl">Base Nacl :</label>
+                            <input type="number" step='any' class="form-control" id="base_nacl" name="base_nacl" value="<?=$select['base_nacl']?>" oninput="calculate()" required>
+                        </div>
                         <div class="mb-3" hidden>
                             <label for="id_sa">ID SA :</label>
                             <input type="number" step='any' class="form-control" id="id_sa" name="id_sa" value="<?=$select['id_sa']?>" required>
@@ -163,11 +172,13 @@ $loop = $_POST['loop'];
 $line = $_POST['line'];
 $result = $_POST['result'];
 $shift = $_POST['shift'];
+$analis = $_POST['analis'];
+$field = $_POST['field'];
 $submit = $_POST['submit'];
 
 if(isset($submit)){
     $queryInsert = pg_query($dbconn, "UPDATE tbl_sa_pc_detail
-	SET sampel=$sampel, seasoning_nacl=$seasoning_nacl, base_nacl=$base_nacl, fg_nacl=$fg_nacl, nacl=$nacl, sa=$sa, status='$status',  id_sa=$id_sa, waktu='$waktu', standar='$standar', result='$result', loop='$loop', tanggal='$tanggal', line='$line', shift='$shift'
+	SET sampel=$sampel, seasoning_nacl=$seasoning_nacl, base_nacl=$base_nacl, fg_nacl=$fg_nacl, nacl=$nacl, sa=$sa, status='$status',  id_sa=$id_sa, waktu='$waktu', standar='$standar', result='$result', loop='$loop', tanggal='$tanggal', line='$line', shift='$shift', analis='$analis', field='$field'
 	WHERE id=$id;");
     
     if($queryInsert){
