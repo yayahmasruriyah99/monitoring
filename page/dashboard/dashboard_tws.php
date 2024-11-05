@@ -195,7 +195,7 @@
                             
 
                             if (!empty($loop) && !empty($tanggal) && !empty($shift)) {
-                             $query = "SELECT tbl_cr_tws_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max FROM tbl_cr_tws_detail, tbl_sa_pc, tbl_produk WHERE tbl_cr_tws_detail.loop='$loop' AND tbl_produk.kode=tbl_sa_pc.kode  AND tbl_sa_pc.id=tbl_cr_tws_detail.id_sa AND tbl_cr_tws_detail.tanggal='$tanggal'";
+                             $query = "SELECT tbl_cr_tws_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max FROM tbl_cr_tws_detail, tbl_sa_pc, tbl_produk WHERE tbl_cr_tws_detail.loop='$loop' AND tbl_produk.kode=tbl_sa_pc.kode  AND tbl_sa_pc.id=tbl_cr_tws_detail.id_sa AND tbl_cr_tws_detail.tanggal='$tanggal' ORDER BY tbl_sa_pc.loop ASC";
 
                              if ($shift !== "all") {
                                 $query .= " AND tbl_cr_tws_detail.shift = '$shift'";
@@ -207,7 +207,7 @@
                         }else if(empty($loop)){
                             
 
-                            $query = "SELECT tbl_cr_tws_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max FROM tbl_cr_tws_detail, tbl_sa_pc, tbl_produk WHERE tbl_cr_tws_detail.loop=16 AND tbl_produk.kode=tbl_sa_pc.kode  AND tbl_sa_pc.id=tbl_cr_tws_detail.id_sa AND tbl_cr_tws_detail.tanggal='$tanggal_sekarang' AND tbl_cr_tws_detail.shift='$shift_sekarang'";
+                            $query = "SELECT tbl_cr_tws_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max FROM tbl_cr_tws_detail, tbl_sa_pc, tbl_produk WHERE tbl_cr_tws_detail.loop=16 AND tbl_produk.kode=tbl_sa_pc.kode  AND tbl_sa_pc.id=tbl_cr_tws_detail.id_sa AND tbl_cr_tws_detail.tanggal='$tanggal_sekarang' AND tbl_cr_tws_detail.shift='$shift_sekarang' ORDER BY tbl_sa_pc.loop ASC";
                             
 
 
@@ -221,7 +221,7 @@
                                     WHERE tbl_produk.kode = tbl_sa_pc.kode 
                                     AND tbl_cr_tws_detail.loop = '$loop' 
                                     AND tbl_sa_pc.id = tbl_cr_tws_detail.id_sa 
-                                    AND tbl_cr_tws_detail.tanggal = '$tanggal' ";
+                                    AND tbl_cr_tws_detail.tanggal = '$tanggal' ORDER BY tbl_sa_pc.loop ASC";
                                     if ($shift !== "all") {
                                 $query .= " AND tbl_cr_tws_detail.shift = '$shift'";
                             }

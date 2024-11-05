@@ -69,7 +69,7 @@ $detailPc= pg_fetch_assoc($queryPc);
                         </div> 
                         <div class="mb-3">
                             <label for="sampel">Sampel Ke - :</label>
-                            <input type="number" class="form-control" id="sampel" name="sampel" value="<?= $newSampel?>" readonly required>
+                            <input type="number" class="form-control" id="sampel" name="sampel" value="<?= $newSampel?>"  required>
                         </div>
                         <div class="mb-3">
                             <label for="ts">Seasoning in Total Slurry :</label>

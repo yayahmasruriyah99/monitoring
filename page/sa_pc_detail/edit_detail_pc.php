@@ -49,7 +49,7 @@ $select = pg_fetch_assoc($querySelect);
                         </div>
                         <div class="mb-3">
                             <label for="sampel">Sampel Ke - :</label>
-                            <input type="number" class="form-control" id="sampel" name="sampel" value="<?=$select['sampel']?>" readonly required>
+                            <input type="number" class="form-control" id="sampel" name="sampel" value="<?=$select['sampel']?>"  required>
                         </div>
                         <div class="mb-3">
                             <label for="seasoning_nacl">Seasoning Nacl :</label>
