@@ -221,7 +221,7 @@
                                 if ($shift !== "all") {
                                     $query .= " AND tbl_sa_ts_detail.shift = '$shift'";
                                 }
-                                $query .= " ORDER BY tbl_sa_pc_detail.sampel ASC";
+                                $query .= " ORDER BY tbl_sa_ts_detail.sampel ASC";
                                 // Eksekusi query
                                 $result = pg_query($dbconn, $query);
                             }
