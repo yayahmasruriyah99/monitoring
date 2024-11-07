@@ -108,7 +108,7 @@
         <div class="col-md-2">
                     <select name="loop" id="loop" class="form-control">
                        <?php
-                       $querySelect = pg_query($dbconn, "SELECT * FROM tbl_loop LIMIT 15 ");
+                       $querySelect = pg_query($dbconn, "SELECT * FROM tbl_loop  order by loop LIMIT 15 ");
                         while($data = pg_fetch_assoc($querySelect)){
                             ?>
                             <option value="<?=$data['loop']."-".$data['line']."-".$data['bagian']?>"><?=$data['loop']."-".$data['line']."-".$data['bagian']?></option>
@@ -151,6 +151,7 @@
         $loop =  $loop_line[0];
         $line = $loop_line[1];
         $bagian =  $loop_line[2];
+        
     ?>
 
 
@@ -191,30 +192,42 @@
                         $shift_sekarang = $_SESSION['shift'];
                         
                        if (isset($_POST['cari'])) {
-                            if (!empty($loop) && !empty($tanggal) && !empty($shift)) {
-                                if ($loop < 14) {
-                                    $query = "SELECT tbl_sa_pc_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max FROM tbl_sa_pc_detail, tbl_sa_pc, tbl_produk WHERE tbl_produk.kode=tbl_sa_pc.kode AND tbl_sa_pc_detail.loop='$loop' AND tbl_sa_pc.id=tbl_sa_pc_detail.id_sa AND tbl_sa_pc_detail.tanggal='$tanggal' ORDER BY tbl_sa_pc.loop ASC LIMIT 15";
-
-                                    if ($shift !== "all") {
-                                        $query .= " AND tbl_sa_pc_detail.shift = '$shift'";
-                                    }
-
-                                    // Eksekusi query
-                                    $result = pg_query($dbconn, $query);    
-
-                                } elseif ($loop >= 14 && $loop <= 15) {
-                                    $query = "SELECT tbl_sa_ts_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max FROM tbl_sa_ts_detail, tbl_sa_pc, tbl_produk WHERE tbl_produk.kode=tbl_sa_pc.kode AND tbl_sa_ts_detail.loop='$loop' AND tbl_sa_pc.id=tbl_sa_ts_detail.id_sa AND tbl_sa_ts_detail.tanggal='$tanggal'  ORDER BY tbl_sa_pc.loop ASC LIMIT 15";
-
-                                    if ($shift !== "all") {
-                                        $query .= " AND tbl_sa_ts_detail.shift = '$shift'";
-                                    }
-                                    
-                                    // Eksekusi query
-                                    $result = pg_query($dbconn, $query);
+                        if (!empty($loop) && !empty($tanggal) && !empty($shift)) {
+                            if ($loop < 14) {
+                                // Bangun query dengan kondisi shift
+                                $query = "SELECT tbl_sa_pc_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max 
+                                        FROM tbl_sa_pc_detail, tbl_sa_pc, tbl_produk 
+                                        WHERE tbl_produk.kode = tbl_sa_pc.kode 
+                                        AND tbl_sa_pc_detail.loop = '$loop' 
+                                        AND tbl_sa_pc.id = tbl_sa_pc_detail.id_sa 
+                                        AND tbl_sa_pc_detail.tanggal = '$tanggal'";
+                                if ($shift !== "all") {
+                                    $query .= " AND tbl_sa_pc_detail.shift = '$shift'";
                                 }
+
+                                $query .= " ORDER BY tbl_sa_pc_detail.sampel ASC";
+
+                                // Eksekusi query
+                                $result = pg_query($dbconn, $query);
+                                
+                            } elseif ($loop >= 14 && $loop <= 15) {
+                                // Bangun query dengan kondisi shift
+                                $query = "SELECT tbl_sa_ts_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max 
+                                        FROM tbl_sa_ts_detail, tbl_sa_pc, tbl_produk 
+                                        WHERE tbl_produk.kode = tbl_sa_pc.kode 
+                                        AND tbl_sa_ts_detail.loop = '$loop' 
+                                        AND tbl_sa_pc.id = tbl_sa_ts_detail.id_sa 
+                                        AND tbl_sa_ts_detail.tanggal = '$tanggal'";
+                                if ($shift !== "all") {
+                                    $query .= " AND tbl_sa_ts_detail.shift = '$shift'";
+                                }
+                                $query .= " ORDER BY tbl_sa_pc_detail.sampel ASC";
+                                // Eksekusi query
+                                $result = pg_query($dbconn, $query);
                             }
+                        }
                         } elseif (empty($loop)) {
-                            $query = "SELECT tbl_sa_pc_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max FROM tbl_sa_pc_detail, tbl_sa_pc, tbl_produk WHERE tbl_produk.kode=tbl_sa_pc.kode AND tbl_sa_pc_detail.loop=1 AND tbl_sa_pc.id=tbl_sa_pc_detail.id_sa AND tbl_sa_pc_detail.tanggal='$tanggal_sekarang' AND tbl_sa_pc_detail.shift='$shift_sekarang' ORDER BY tbl_sa_pc.loop ASC LIMIT 15";
+                            $query = "SELECT tbl_sa_pc_detail.*, tbl_sa_pc.nama_produk, tbl_produk.yellow_min, tbl_produk.yellow_max, tbl_produk.green_min, tbl_produk.green_max FROM tbl_sa_pc_detail, tbl_sa_pc, tbl_produk WHERE tbl_produk.kode=tbl_sa_pc.kode AND tbl_sa_pc_detail.loop=1 AND tbl_sa_pc.id=tbl_sa_pc_detail.id_sa AND tbl_sa_pc_detail.tanggal='$tanggal_sekarang' AND tbl_sa_pc_detail.shift='$shift_sekarang' ORDER BY tbl_sa_pc_detail.sampel ASC";
 
                     
                                     // Eksekusi query
